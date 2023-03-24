@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Pelipenko220
 {
     /// <summary>
@@ -23,6 +25,15 @@ namespace Pelipenko220
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+
+            }
         }
     }
 }
