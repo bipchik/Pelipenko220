@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pelipenko220"
         mc:Ignorable="d"
+        xmlns:sys ="clr-namespace:System;assembly=mscorlib"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -13,5 +14,7 @@
             <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
         <Frame x:Name="MainFrame" Content="Frame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{}{0:dd-MM-yyyy hh:mm:ss}'}" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top">Назад</Button>
     </Grid>
 </Window>
