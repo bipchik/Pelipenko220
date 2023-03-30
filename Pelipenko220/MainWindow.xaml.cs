@@ -32,7 +32,6 @@ namespace Pelipenko220
             if (result == MessageBoxResult.No)
             {
                 e.Cancel = true;
-
             }
         }
     }
