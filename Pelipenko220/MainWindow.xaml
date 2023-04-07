@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Pelipenko220"
         mc:Ignorable="d"
         Closing="Window_Closing"
+        Loaded="Window_Loaded"
         xmlns:sys ="clr-namespace:System;assembly=mscorlib"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
         <Image Source="bibl.png" Grid.Row="1"/>
         <Frame x:Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{}{0:HH:mm dd.MM.yyyy}'}" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
-        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top">Назад</Button>
+        <Label x:Name="label1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Label>
+        <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="67" Margin="10,10,0,0">Назад</Button>
     </Grid>
 </Window>
