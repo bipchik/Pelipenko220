@@ -19,5 +19,7 @@
         <Frame x:Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Label x:Name="label1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Label>
         <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="67" Margin="10,10,0,0">Назад</Button>
+        <Button x:Name="Light" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="77" Margin="0,0,82,0" RenderTransformOrigin="0.507,0.173" Click="Light_Click">Светлая тема</Button>
+        <Button x:Name="Dark" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="77" RenderTransformOrigin="0.493,-0.227" Click="Dark_Click">Тёмная тема</Button>
     </Grid>
 </Window>
