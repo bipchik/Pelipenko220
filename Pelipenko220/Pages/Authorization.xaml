@@ -9,6 +9,29 @@
       Title="Authorization">
 
     <Grid>
-        
+        <Label Content="Логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
+        <TextBox x:Name="LoginBox" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365">
+            <TextBox.ToolTip>
+                <ToolTip Content="Введите Логин или почту, которые указывали при регистрации."/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBlock x:Name="txtHintLogin" Text="Логин или почта" Foreground="#d4d4d4" Margin="122,38,438,391" FontSize="16"/>
+        <PasswordBox x:Name="PassBox" Margin="107,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365">
+            <PasswordBox.ToolTip>
+                <ToolTip Content="Введите пароль, который указывали при регистрации."/>
+            </PasswordBox.ToolTip>
+        </PasswordBox>
+        <TextBlock x:Name="txtHintPass" Text="Логин или почта" Foreground="#d4d4d4" Margin="122,38,438,391" FontSize="16"/>
+        <Label Content="Пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
+        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="37,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171">
+            <Button.ToolTip>
+                <ToolTip Content="Если Вы еще не зарегистрированы, нажмите на эту кнопку."/>
+            </Button.ToolTip>
+        </Button>
+        <Button x:Name="Enter" Content="Войти" Height="42" Margin="301,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171">
+            <Button.ToolTip>
+                <ToolTip Content="Если вы ввели данные в поля 'Логин' и 'Пароль', нажмите на эту кнопку."/>
+            </Button.ToolTip>
+        </Button>
     </Grid>
 </Page>

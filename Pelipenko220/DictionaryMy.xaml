@@ -3,13 +3,22 @@
     <Style TargetType="Button">
         <Setter Property="Background" Value="#4682B4"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="TextBox">
-        <Setter Property="Background" Value="#6A5ACD"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="#256d7b"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style TargetType="PasswordBox">
+        <Setter Property="Background" Value="#256d7b"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="#256d7b"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="Label">
-        <Setter Property="Background" Value="#6A5ACD"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
     <Style TargetType="Grid">
