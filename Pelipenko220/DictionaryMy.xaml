@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#6A5ACD"/>
+        <Setter Property="Background" Value="#4682B4"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
     <Style TargetType="TextBox">
@@ -13,6 +13,6 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
     <Style TargetType="Grid">
-        <Setter Property="Background" Value="#4682B4"/>
+        <Setter Property="Background" Value="#1a3547"/>
     </Style>
 </ResourceDictionary>
