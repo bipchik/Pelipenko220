@@ -5,32 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Pelipenko220.Pages"
       mc:Ignorable="d" 
+
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Authorization">
 
     <Grid>
         <Label Content="Логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
-        <TextBox x:Name="LoginBox" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365">
+        <TextBox x:Name="LoginBox" Background="Transparent" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_Changed">
             <TextBox.ToolTip>
-                <ToolTip Content="Введите Логин или почту, которые указывали при регистрации."/>
+                <ToolTip Content="Введите Логин или почту, которые Вы указали при регистрации."/>
             </TextBox.ToolTip>
         </TextBox>
         <TextBlock x:Name="txtHintLogin" Text="Логин или почта" Foreground="#d4d4d4" Margin="122,38,438,391" FontSize="16"/>
-        <PasswordBox x:Name="PassBox" Margin="107,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365">
+        <PasswordBox x:Name="PassBox" Background="Transparent" Margin="107,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed">
             <PasswordBox.ToolTip>
-                <ToolTip Content="Введите пароль, который указывали при регистрации."/>
+                <ToolTip Content="Введите пароль, который Вы указали при регистрации."/>
             </PasswordBox.ToolTip>
         </PasswordBox>
-        <TextBlock x:Name="txtHintPass" Text="Логин или почта" Foreground="#d4d4d4" Margin="122,38,438,391" FontSize="16"/>
+        <TextBlock x:Name="txtHintPass" Text="Пароль" Foreground="#d4d4d4" Margin="122,89,438,340" FontSize="16"/>
         <Label Content="Пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
         <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="37,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171">
             <Button.ToolTip>
                 <ToolTip Content="Если Вы еще не зарегистрированы, нажмите на эту кнопку."/>
             </Button.ToolTip>
         </Button>
-        <Button x:Name="Enter" Content="Войти" Height="42" Margin="301,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171">
+        <Button x:Name="Enter" Content="Войти" Height="42" Margin="301,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Enter_Click">
             <Button.ToolTip>
-                <ToolTip Content="Если вы ввели данные в поля 'Логин' и 'Пароль', нажмите на эту кнопку."/>
+                <ToolTip Content="Если Вы ввели данные в поля 'Логин' и 'Пароль', нажмите на эту кнопку."/>
             </Button.ToolTip>
         </Button>
     </Grid>

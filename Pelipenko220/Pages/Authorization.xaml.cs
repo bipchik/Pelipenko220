@@ -24,5 +24,41 @@ namespace Pelipenko220.Pages
         {
             InitializeComponent();
         }
+        private void LoginBox_Changed(object sender, RoutedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Visible;
+            if (LoginBox.Text.Length > 0)
+            {
+                txtHintLogin.Visibility = Visibility.Hidden;
+            }
+        }
+        private void PassBox_Changed(object sender, RoutedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Visible;
+            if (PassBox.Password.Length > 0)
+            {
+                txtHintPass.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(LoginBox.Text) || string.IsNullOrEmpty(PassBox.Password))
+            {
+                MessageBox.Show("Введите логин и пароль!");
+                return;
+            }
+
+            using (var db = new Entities())
+            {
+                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == PassBox.Password);
+
+                if (user == null) 
+                {
+                    MessageBox.Show("Пользователь с такими данными не найден!");
+                    return;
+                }
+            }
+        }
     }
 }
