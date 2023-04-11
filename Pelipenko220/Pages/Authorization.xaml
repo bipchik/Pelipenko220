@@ -11,13 +11,13 @@
 
     <Grid>
         <Label Content="Логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
-        <TextBlock Name="txtHintLogin" Text="Логин или почта" Foreground="Gray" Margin="122,38,438,391" FontSize="16"/>
-        <TextBox x:Name="LoginBox" Text="" Background="Transparent" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_Changed">
+        <TextBlock x:Name="txtHintLogin" Text="Логин" Foreground="Gray" FontSize="16" Margin="120,38,0,-3"/>
+        <TextBox x:Name="LoginBox" Background="Transparent" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged">
             <TextBox.ToolTip>
                 <ToolTip Content="Введите Логин или почту, которые Вы указали при регистрации."/>
             </TextBox.ToolTip>
         </TextBox>
-        <TextBlock Name="txtHintPass" Text="Пароль" Foreground="Gray" Margin="122,89,438,340" FontSize="16"/>
+        <TextBlock x:Name="txtHintPass" Foreground="Gray" FontSize="16" Margin="120,90,0,0"><Run Text="Пароль"/></TextBlock>
         <PasswordBox x:Name="PassBox" Password="" Background="Transparent" Margin="107,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed">
             <PasswordBox.ToolTip>
                 <ToolTip Content="Введите пароль, который Вы указали при регистрации."/>

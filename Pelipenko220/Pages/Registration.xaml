@@ -9,6 +9,19 @@
       Title="Registration">
 
     <Grid>
-        
+        <Label Content="Введите логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBox x:Name="LoginInput" Background="Transparent" Margin="188,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
+        <Label Content="Введите пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <PasswordBox x:Name="PassInput" Background="Transparent" Margin="188,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed"/>
+        <Label Content="Повторите пароль" Margin="37,135,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <PasswordBox x:Name="ChekPassInput" Background="Transparent" Margin="188,135,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed"/>
+        <Label Content="Введите Фамилию" Margin="37,186,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBox x:Name="SernameInput" Background="Transparent" Margin="188,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
+        <Label Content="Введите Имя" Margin="37,236,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBox x:Name="NameInput" Background="Transparent" Margin="188,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
+        <Label Content="Введите Отчество" Margin="37,287,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBox x:Name="PatInput" Background="Transparent" Margin="188,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
+        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="382,354,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click"/>
+        <Button x:Name="Cancel" Content="Отмена" Height="42" Margin="37,354,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Cancel_Click"/>
     </Grid>
 </Page>

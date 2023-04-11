@@ -24,18 +24,10 @@ namespace Pelipenko220.Pages
         {
             InitializeComponent();
         }
-        private void LoginBox_Changed(object sender, RoutedEventArgs e)
-        {
-            txtHintLogin.Visibility = Visibility.Visible;
-            if (LoginBox.Text.Length > 1)
-            {
-                txtHintLogin.Visibility = Visibility.Hidden;
-            }
-        }
         private void PassBox_Changed(object sender, RoutedEventArgs e)
         {
             txtHintPass.Visibility = Visibility.Visible;
-            if (PassBox.Password.Length > 1)
+            if (PassBox.Password.Length > 0)
             {
                 txtHintPass.Visibility = Visibility.Hidden;
             }
@@ -45,7 +37,7 @@ namespace Pelipenko220.Pages
         {
             if (string.IsNullOrEmpty(LoginBox.Text) || string.IsNullOrEmpty(PassBox.Password))
             {
-                MessageBox.Show("Введите логин и пароль!");
+                MessageBox.Show("Введите логин и пароль!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -55,9 +47,18 @@ namespace Pelipenko220.Pages
 
                 if (user == null) 
                 {
-                    MessageBox.Show("Пользователь с такими данными не найден!");
+                    MessageBox.Show("Пользователь с такими данными не найден!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+            }
+        }
+
+        private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Visible;
+            if (LoginBox.Text.Length > 0)
+            {
+                txtHintLogin.Visibility = Visibility.Hidden;
             }
         }
     }
