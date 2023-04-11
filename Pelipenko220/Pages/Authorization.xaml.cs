@@ -27,15 +27,15 @@ namespace Pelipenko220.Pages
         private void LoginBox_Changed(object sender, RoutedEventArgs e)
         {
             txtHintLogin.Visibility = Visibility.Visible;
-            if (LoginBox.Text.Length > 0)
+            if (LoginBox.Text.Length > 1)
             {
                 txtHintLogin.Visibility = Visibility.Hidden;
             }
         }
         private void PassBox_Changed(object sender, RoutedEventArgs e)
         {
-            txtHintLogin.Visibility = Visibility.Visible;
-            if (PassBox.Password.Length > 0)
+            txtHintPass.Visibility = Visibility.Visible;
+            if (PassBox.Password.Length > 1)
             {
                 txtHintPass.Visibility = Visibility.Hidden;
             }
