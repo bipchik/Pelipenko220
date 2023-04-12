@@ -47,5 +47,53 @@ namespace Pelipenko220.Pages
         {
             
         }
+        private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HintLogin.Visibility = Visibility.Visible;
+            if (LoginInput.Text.Length > 0)
+            {
+                HintLogin.Visibility = Visibility.Hidden;
+            }
+        }
+        private void SernameBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HintSername.Visibility = Visibility.Visible;
+            if (SernameInput.Text.Length > 0)
+            {
+                HintSername.Visibility = Visibility.Hidden;
+            }
+        }
+        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HintName.Visibility = Visibility.Visible;
+            if (NameInput.Text.Length > 0)
+            {
+                HintName.Visibility = Visibility.Hidden;
+            }
+        }
+        private void PatBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HintPat.Visibility = Visibility.Visible;
+            if (PatInput.Text.Length > 0)
+            {
+                HintPat.Visibility = Visibility.Hidden;
+            }
+        }
+        private void PassBox_Changed(object sender, RoutedEventArgs e)
+        {
+            HintPass.Visibility = Visibility.Visible;
+            if (PassInput.Password.Length > 0)
+            {
+                HintPass.Visibility = Visibility.Hidden;
+            }
+        }
+        private void ChekPassBox_Changed(object sender, RoutedEventArgs e)
+        {
+            HintPass.Visibility = Visibility.Visible;
+            if (PassInput.Password.Length > 0)
+            {
+                HintPass.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

@@ -14,6 +14,12 @@ namespace Pelipenko220
     
     public partial class ИнформацияОЧитателе
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ИнформацияОЧитателе()
+        {
+            this.ВыдачаКниги = new HashSet<ВыдачаКниги>();
+        }
+    
         public int НомерБилета { get; set; }
         public string Фамилия { get; set; }
         public string Имя { get; set; }
@@ -23,6 +29,8 @@ namespace Pelipenko220
         public string Логин { get; set; }
         public string Пароль { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ВыдачаКниги> ВыдачаКниги { get; set; }
         public virtual ПаспортныеДанные ПаспортныеДанные { get; set; }
     }
 }

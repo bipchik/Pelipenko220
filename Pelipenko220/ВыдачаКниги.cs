@@ -21,5 +21,6 @@ namespace Pelipenko220
         public Nullable<System.DateTime> ДатаВозврата { get; set; }
     
         public virtual ИнформацияОКниге ИнформацияОКниге { get; set; }
+        public virtual ИнформацияОЧитателе ИнформацияОЧитателе { get; set; }
     }
 }
