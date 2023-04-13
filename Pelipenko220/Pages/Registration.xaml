@@ -9,25 +9,32 @@
       Title="Registration">
 
     <Grid>
-        <Label Content="Введите логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
-        <TextBlock x:Name="HintLogin" Text="Логин" Foreground="Gray" FontSize="16" Margin="212,38,206,386" Height="NaN" Width="NaN"/>
-        <TextBox x:Name="LoginInput" Background="Transparent" Margin="200,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
-        <Label Content="Введите пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
-        <TextBlock x:Name="HintPass" Text="Пароль" Foreground="Gray" FontSize="16" Margin="212,89,206,335" Height="NaN" Width="NaN"/>
-        <PasswordBox x:Name="PassInput" Background="Transparent" Margin="200,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed"/>
-        <Label Content="Подтвердите пароль" Margin="37,135,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="162"/>
-        <TextBlock x:Name="HintChekPass" Text="Повторите пароль" Foreground="Gray" FontSize="16" Margin="212,140,206,284" Height="NaN" Width="NaN"/>
-        <PasswordBox x:Name="ChekPassInput" Background="Transparent" Margin="200,135,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="ChekPassBox_Changed"/>
-        <Label Content="Введите Фамилию" Margin="37,186,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
-        <TextBlock x:Name="HintSername" Text="Фамилия" Foreground="Gray" FontSize="16" Margin="212,191,206,233" Height="NaN" Width="NaN"/>
-        <TextBox x:Name="SernameInput" Background="Transparent" Margin="200,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="SernameBox_TextChanged"/>
-        <Label Content="Введите Имя" Margin="37,236,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
-        <TextBlock x:Name="HintName" Text="Имя" Foreground="Gray" FontSize="16" Margin="212,241,206,183" Height="NaN" Width="NaN"/>
-        <TextBox x:Name="NameInput" Background="Transparent" Margin="200,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="NameBox_TextChanged"/>
-        <Label Content="Введите Отчество" Margin="37,287,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
-        <TextBlock x:Name="HintPat" Text="Отчество" Foreground="Gray" FontSize="16" Margin="212,292,206,132" Height="NaN" Width="NaN"/>
-        <TextBox x:Name="PatInput" Background="Transparent" Margin="200,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="PatBox_TextChanged"/>
-        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="394,354,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click"/>
-        <Button x:Name="Cancel" Content="Отмена" Height="42" Margin="37,354,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Cancel_Click"/>
+        <TextBlock Text="*" Foreground="Red" Margin="145,26,647,403"/>
+        <TextBlock Text="*" Foreground="Red" Margin="144,68,646,361"/>
+        <TextBlock Text="*" Foreground="Red" Margin="154,119,636,310"/>
+        <TextBlock Text="*" Foreground="Red" Margin="191,170,599,259"/>
+        <TextBlock Text="*" Foreground="Red" Margin="173,221,614,208"/>
+        <TextBlock Text="*" Foreground="Red" Margin="133,271,657,158"/>
+        <TextBlock Text="Обязательные поля" Foreground="White" Margin="34,27,657,402"  />
+        <Label Content="Введите логин" Margin="30,63,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBlock x:Name="HintLogin" Text="Логин или почта" Foreground="Gray" FontSize="16" Margin="219,68,199,356"/>
+        <TextBox ToolTip="Введите логин или почту, которые Вы будете использовать для входа." x:Name="LoginInput" Background="Transparent" Margin="207,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged"/>
+        <Label Content="Введите пароль" Margin="30,114,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBlock x:Name="HintPass" Text="Пароль" Foreground="Gray" FontSize="16" Margin="219,119,199,305"/>
+        <PasswordBox ToolTip="Введите пароль, который Вы будете использовть для входа." x:Name="PassInput" Background="Transparent" Margin="207,114,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed"/>
+        <Label Content="Подтвердите пароль" Margin="30,165,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="162"/>
+        <TextBlock x:Name="HintChekPass" Text="Повторите пароль" Foreground="Gray" FontSize="16" Margin="219,170,199,254"/>
+        <PasswordBox ToolTip="Для подтверждения, введите пароль еще раз." x:Name="ChekPassInput" Background="Transparent" Margin="207,165,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="ChekPassBox_Changed"/>
+        <Label Content="Введите Фамилию" Margin="30,216,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBlock x:Name="HintSername" Text="Фамилия" Foreground="Gray" FontSize="16" Margin="219,221,199,203"/>
+        <TextBox ToolTip="Введите Ваше полное имя." x:Name="SernameInput" Background="Transparent" Margin="207,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="SernameBox_TextChanged"/>
+        <Label Content="Введите Имя" Margin="30,266,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBlock x:Name="HintName" Text="Имя" Foreground="Gray" FontSize="16" Margin="219,271,199,153"/>
+        <TextBox ToolTip="Введит Вашу фамилию." x:Name="NameInput" Background="Transparent" Margin="207,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="NameBox_TextChanged"/>
+        <Label Content="Введите Отчество" Margin="30,317,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
+        <TextBlock x:Name="HintPat" Text="Отчество" Foreground="Gray" FontSize="16" Margin="219,322,199,102"/>
+        <TextBox ToolTip="Введите Ваше отчество." x:Name="PatInput" Background="Transparent" Margin="207,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="PatBox_TextChanged"/>
+        <Button ToolTip="Возвращение на страницу авторизации." x:Name="Reg" Content="Регистрация" Height="42" Margin="401,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click"/>
+        <Button ToolTip="Для регистрации, осле заполнения всех полей нажмите на эту кнопку." x:Name="Cancel" Content="Отмена" Height="42" Margin="30,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Cancel_Click"/>
     </Grid>
 </Page>

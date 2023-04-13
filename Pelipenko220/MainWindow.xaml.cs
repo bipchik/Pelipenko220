@@ -43,6 +43,11 @@ namespace Pelipenko220
             timer.Start();
         }
 
+        internal static object Select(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         private void Light_Click(object sender, RoutedEventArgs e)
         {
             // определяем путь к файлу ресурсов
@@ -65,6 +70,10 @@ namespace Pelipenko220
             Application.Current.Resources.Clear();
             // добавляем загруженный словарь ресурсов
             Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+        private void Reg_Click(object sende, RoutedEventArgs e)
+        {
+
         }
     }
 }

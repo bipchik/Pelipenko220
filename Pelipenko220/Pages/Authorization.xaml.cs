@@ -61,5 +61,11 @@ namespace Pelipenko220.Pages
                 txtHintLogin.Visibility = Visibility.Hidden;
             }
         }
+
+        private void Reg_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/Registration.xaml", UriKind.Relative));
+        }
     }
 }

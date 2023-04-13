@@ -9,7 +9,7 @@
         Loaded="Window_Loaded"
         
         xmlns:sys ="clr-namespace:System;assembly=mscorlib"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"></RowDefinition>
@@ -17,10 +17,10 @@
             <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/Authorization.xaml"/>
+        <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame" Grid.Row="1" Source="Pages/Authorization.xaml"/>
         <Label x:Name="label1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16"></Label>
         <Button Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="67" Margin="10,10,0,0">Назад</Button>
         <Button x:Name="Light" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="77" Margin="0,0,82,0" RenderTransformOrigin="0.507,0.173" Click="Light_Click">Светлая тема</Button>
         <Button x:Name="Dark" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="77" RenderTransformOrigin="0.493,-0.227" Click="Dark_Click">Тёмная тема</Button>
     </Grid>
-</Window>
+</Window>     

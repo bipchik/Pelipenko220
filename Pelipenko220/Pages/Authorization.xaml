@@ -24,7 +24,7 @@
             </PasswordBox.ToolTip>
         </PasswordBox>
         <Label Content="Пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
-        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="37,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171">
+        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="37,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click">
             <Button.ToolTip>
                 <ToolTip Content="Если Вы еще не зарегистрированы, нажмите на эту кнопку."/>
             </Button.ToolTip>

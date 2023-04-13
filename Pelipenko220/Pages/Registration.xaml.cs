@@ -28,13 +28,13 @@ namespace Pelipenko220.Pages
         {
             if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(SernameInput.Text) || string.IsNullOrEmpty(NameInput.Text) || string.IsNullOrEmpty(PatInput.Text))
             {
-                MessageBox.Show("Введите логин и пароль!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Заполните все обязтельные поля!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             using (var db = new Entities())
             {
-                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text && u.Пароль == PassInput.Password && u.Пароль == ChekPassInput.Password && u.Фамилия == SernameInput.Text && u.Имя == NameInput.Text && u.Отчество == PatInput.Text);
+                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
 
                 if (user == null)
                 {
@@ -45,7 +45,8 @@ namespace Pelipenko220.Pages
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/Authorization.xaml", UriKind.Relative));
         }
         private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
         {
