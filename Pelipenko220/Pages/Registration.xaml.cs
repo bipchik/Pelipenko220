@@ -32,16 +32,25 @@ namespace Pelipenko220.Pages
                 return;
             }
 
-            using (var db = new Entities())
+           
+            if (PassInput.Password.Length >= 6)
             {
-                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
+                bool eng = true; //англ раскладка
+                bool num = false;
 
-                if (user == null)
+                for (int i = 0; i < PassInput.Password.Length; i++) //перебираем символы
                 {
-                    MessageBox.Show("Пользователь с такими данными не найден!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    if (PassInput.Password[i] >= 'А' && PassInput.Password[i] <= 'Я') eng = false;//если русская раскладка
+                    if (PassInput.Password[i] >= '0' && PassInput.Password[i] <= '9') num = true;
                 }
+
+                if (!eng)
+                    MessageBox.Show("Доступна только английская раскладка!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (!num)
+                    MessageBox.Show("Добавьте хотя бы одну цифру.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (eng && num) { }// проверяем соответсвие
             }
+            else MessageBox.Show("Пароль должен содержать минимум 6 символов.", "Слишком короткий пароль!!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -97,4 +106,5 @@ namespace Pelipenko220.Pages
             }
         }
     }
+
 }

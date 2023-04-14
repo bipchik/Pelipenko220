@@ -47,7 +47,7 @@ namespace Pelipenko220.Pages
 
                 if (user == null) 
                 {
-                    MessageBox.Show("Пользователь с такими данными не найден!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Пользователь с такими данными не найден!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
