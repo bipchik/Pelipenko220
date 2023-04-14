@@ -90,10 +90,10 @@ namespace Pelipenko220.Pages
         }
         private void ChekPassBox_Changed(object sender, RoutedEventArgs e)
         {
-            HintPass.Visibility = Visibility.Visible;
-            if (PassInput.Password.Length > 0)
+            HintChekPass.Visibility = Visibility.Visible;
+            if (ChekPassInput.Password.Length > 0)
             {
-                HintPass.Visibility = Visibility.Hidden;
+                HintChekPass.Visibility = Visibility.Hidden;
             }
         }
     }

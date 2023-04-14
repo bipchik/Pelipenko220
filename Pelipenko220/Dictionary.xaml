@@ -8,10 +8,12 @@
     <Style TargetType="TextBox">
         <Setter Property="Background" Value="#E0A9AF"/>
         <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="PasswordBox">
         <Setter Property="Background" Value="#E0A9AF"/>
         <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="ToolTip">
         <Setter Property="Background" Value="#E0A9AF"/>
