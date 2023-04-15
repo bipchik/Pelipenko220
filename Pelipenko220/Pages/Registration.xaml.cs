@@ -26,13 +26,14 @@ namespace Pelipenko220.Pages
         }
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
+            //проверка на пустые поля
             if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(SernameInput.Text) || string.IsNullOrEmpty(NameInput.Text) || string.IsNullOrEmpty(PatInput.Text))
             {
                 MessageBox.Show("Заполните все обязтельные поля!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-           
+            //проверка на возможный пароль
             if (PassInput.Password.Length >= 6)
             {
                 bool eng = true; //англ раскладка
@@ -40,17 +41,34 @@ namespace Pelipenko220.Pages
 
                 for (int i = 0; i < PassInput.Password.Length; i++) //перебираем символы
                 {
-                    if (PassInput.Password[i] >= 'А' && PassInput.Password[i] <= 'Я') eng = false;//если русская раскладка
+                    if (PassInput.Password[i] >= 'А' && PassInput.Password[i] <= 'Я' || PassInput.Password[i] >= 'а' && PassInput.Password[i] <= 'я') eng = false;//если русская раскладка
                     if (PassInput.Password[i] >= '0' && PassInput.Password[i] <= '9') num = true;
                 }
 
                 if (!eng)
-                    MessageBox.Show("Доступна только английская раскладка!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Для пароля доступна только английская раскладка!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else if (!num)
                     MessageBox.Show("Добавьте хотя бы одну цифру.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 if (eng && num) { }// проверяем соответсвие
             }
-            else MessageBox.Show("Пароль должен содержать минимум 6 символов.", "Слишком короткий пароль!!", MessageBoxButton.OK, MessageBoxImage.Error);
+            else MessageBox.Show("Пароль должен содержать минимум 6 символов.", "Слишком короткий пароль!", MessageBoxButton.OK, MessageBoxImage.Error);
+            
+            //проверка на совпадение паролей
+            if (PassInput.Password != ChekPassInput.Password)
+            {
+                MessageBox.Show("Пароли не совпадают!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            using (var db = new Entities())
+            {
+                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
+
+                if (user != null)
+                {
+                    MessageBox.Show("Этот логин уже зарегестрирован!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {

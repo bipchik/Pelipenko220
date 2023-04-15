@@ -34,7 +34,7 @@
         <Label Content="Введите Отчество" Margin="30,317,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
         <TextBlock x:Name="HintPat" Text="Отчество" Foreground="Gray" FontSize="16" Margin="219,322,199,102"/>
         <TextBox ToolTip="Введите Ваше отчество." x:Name="PatInput" Background="Transparent" Margin="207,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="PatBox_TextChanged"/>
-        <Button ToolTip="Возвращение на страницу авторизации." x:Name="Reg" Content="Регистрация" Height="42" Margin="401,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click"/>
-        <Button ToolTip="Для регистрации, осле заполнения всех полей нажмите на эту кнопку." x:Name="Cancel" Content="Отмена" Height="42" Margin="30,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Cancel_Click"/>
+        <Button ToolTip="Для регистрации, после заполнения всех полей, нажмите на эту кнопку." x:Name="Reg" Content="Регистрация" Height="42" Margin="401,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click"/>
+        <Button ToolTip="Возвращение на страницу авторизации." x:Name="Cancel" Content="Отмена" Height="42" Margin="30,384,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Cancel_Click"/>
     </Grid>
 </Page>
