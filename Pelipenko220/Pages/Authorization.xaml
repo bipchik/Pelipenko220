@@ -14,7 +14,7 @@
         <TextBlock x:Name="txtHintLogin" Text="Логин" Foreground="Gray" FontSize="16" Margin="120,38,0,-3"/>
         <TextBox x:Name="LoginBox" Background="Transparent" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged">
             <TextBox.ToolTip>
-                <ToolTip Content="Введите Логин или почту, которые Вы указали при регистрации."/>
+                <ToolTip Content="Введите Логин, который Вы указали при регистрации."/>
             </TextBox.ToolTip>
         </TextBox>
         <TextBlock x:Name="txtHintPass" Foreground="Gray" FontSize="16" Margin="120,90,0,0"><Run Text="Пароль"/></TextBlock>

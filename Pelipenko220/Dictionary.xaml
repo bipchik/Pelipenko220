@@ -26,5 +26,8 @@
     <Style TargetType="Grid">
         <Setter Property="Background" Value="#D1EEFC"/>
     </Style>
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
 </ResourceDictionary>
     

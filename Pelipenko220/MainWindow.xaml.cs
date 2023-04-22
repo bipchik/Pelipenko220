@@ -12,7 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO; //для осуществления чтения/записи в файл
+using System.Diagnostics; //для запуска Блокнота
+using Microsoft.Win32; //для работы диалоговых окон открытия/сохранения файла
 
 
 namespace Pelipenko220
@@ -71,9 +73,42 @@ namespace Pelipenko220
             // добавляем загруженный словарь ресурсов
             Application.Current.Resources.MergedDictionaries.Add(resourceDict);
         }
-        private void Reg_Click(object sende, RoutedEventArgs e)
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Export(path);
+        }
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "exportFile.txt");
+        void Export(string path)
+        {
+            StreamWriter sw = new StreamWriter(path);
+            using (var db = new Entities())
+            {
+                foreach (var element in db.Пользователь)
+                {
+                    sw.WriteLine($"{element.КодПользователя} {element.Фамилия} {element.Имя} {element.Отчество} {element.Логин} {element.Пароль}");
+                }
+            }
+            sw.Close();
+            Process.Start("notepad.exe", path);
+        }
+        private void ImportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Import();
+        }
+        void Import()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*)";
+            ofd.ShowDialog();
+            if (ofd.FileName == "")
+            {
+                MessageBox.Show("Файл для импорта не найден!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                string fileContent = File.ReadAllText(ofd.FileName);
+                MessageBox.Show(fileContent, "Содержание файла.");
+            }
         }
     }
 }

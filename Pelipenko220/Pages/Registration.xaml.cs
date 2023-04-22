@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace Pelipenko220.Pages
 {
@@ -27,13 +28,11 @@ namespace Pelipenko220.Pages
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
             //проверка на пустые поля
-            if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(SernameInput.Text) || string.IsNullOrEmpty(NameInput.Text) || string.IsNullOrEmpty(PatInput.Text))
+            if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(SernameInput.Text) || string.IsNullOrEmpty(NameInput.Text))
             {
                 MessageBox.Show("Заполните все обязтельные поля!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            //проверка на возможный пароль
             if (PassInput.Password.Length >= 6)
             {
                 bool eng = true; //англ раскладка
@@ -46,34 +45,73 @@ namespace Pelipenko220.Pages
                 }
 
                 if (!eng)
+                {
                     MessageBox.Show("Для пароля доступна только английская раскладка!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 else if (!num)
-                    MessageBox.Show("Добавьте хотя бы одну цифру.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                {
+                    MessageBox.Show("Пароль должен содержать хотя бы одну цифру.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if (eng && num) { }// проверяем соответсвие
             }
-            else MessageBox.Show("Пароль должен содержать минимум 6 символов.", "Слишком короткий пароль!", MessageBoxButton.OK, MessageBoxImage.Error);
-            
+            else
+            {
+                MessageBox.Show("Пароль должен содержать минимум 6 символов.", "Слишком короткий пароль!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             //проверка на совпадение паролей
             if (PassInput.Password != ChekPassInput.Password)
             {
                 MessageBox.Show("Пароли не совпадают!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-
-            using (var db = new Entities())
+            using (var db1 = new Entities())
             {
-                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
+                var user = db1.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
 
                 if (user != null)
                 {
                     MessageBox.Show("Этот логин уже зарегестрирован!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
+                //запись в БД
+                Entities db2 = new Entities();
+                Пользователь userObject = new Пользователь
+                {
+                    Фамилия = SernameInput.Text,
+                    Имя = NameInput.Text,
+                    Отчество = PatInput.Text,
+                    Логин = LoginInput.Text,
+                    Пароль = GetHash(PassInput.Password)
+                };
+                db2.Пользователь.Add(userObject);
+                db2.SaveChanges();
+
+                MessageBox.Show("Пользователь зарегестрирован!", "Регистрация завершена!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/Pages/Authorization.xaml", UriKind.Relative));
+        }
+        public void Reset()
+        {
+            LoginInput.Text = "";
+            SernameInput.Text = "";
+            PatInput.Text = "";
+            PassInput.Password = "";
+            ChekPassInput.Password = "";
+        }
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+            }
         }
         private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -124,5 +162,4 @@ namespace Pelipenko220.Pages
             }
         }
     }
-
 }

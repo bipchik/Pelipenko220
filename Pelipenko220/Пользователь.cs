@@ -12,25 +12,22 @@ namespace Pelipenko220
     using System;
     using System.Collections.Generic;
     
-    public partial class ИнформацияОЧитателе
+    public partial class Пользователь
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ИнформацияОЧитателе()
+        public Пользователь()
         {
-            this.ВыдачаКниги = new HashSet<ВыдачаКниги>();
+            this.ИнформацияОЧитателе = new HashSet<ИнформацияОЧитателе>();
         }
     
-        public int НомерБилета { get; set; }
+        public int КодПользователя { get; set; }
+        public string Логин { get; set; }
+        public string Пароль { get; set; }
         public string Фамилия { get; set; }
         public string Имя { get; set; }
         public string Отчество { get; set; }
-        public string Телефон { get; set; }
-        public int КодПаспорта { get; set; }
-        public Nullable<int> КодПользователя { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ВыдачаКниги> ВыдачаКниги { get; set; }
-        public virtual ПаспортныеДанные ПаспортныеДанные { get; set; }
-        public virtual Пользователь Пользователь { get; set; }
+        public virtual ICollection<ИнформацияОЧитателе> ИнформацияОЧитателе { get; set; }
     }
 }

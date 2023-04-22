@@ -72,13 +72,12 @@
             <PropertyRef Name="НомерБилета" />
           </Key>
           <Property Name="НомерБилета" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Фамилия" Type="varchar" MaxLength="100" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Имя" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Отчество" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Телефон" Type="varchar" MaxLength="12" />
+          <Property Name="Отчество" Type="varchar" MaxLength="100" />
+          <Property Name="Телефон" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="КодПаспорта" Type="int" Nullable="false" />
-          <Property Name="Логин" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Пароль" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="КодПользователя" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "библ.dbo.КнигаАвтор" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -109,6 +108,17 @@
           <Property Name="Серия" Type="int" Nullable="false" />
           <Property Name="Номер" Type="int" Nullable="false" />
           <Property Name="КодПодразделения" Type="varchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="КодПользователя" />
+          </Key>
+          <Property Name="КодПользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Пароль" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Отчество" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_ВыдачаКниги_ИнформацияОКниге">
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
@@ -170,6 +180,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ИнформацияОЧитателе_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="КодПользователя" />
+            </Principal>
+            <Dependent Role="ИнформацияОЧитателе">
+              <PropertyRef Name="КодПользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_КнигаАвтор_Авторы">
           <End Role="Авторы" Type="Self.Авторы" Multiplicity="1" />
           <End Role="КнигаАвтор" Type="Self.КнигаАвтор" Multiplicity="*" />
@@ -228,6 +250,7 @@
           <EntitySet Name="ИнформацияОКниге" EntityType="Self.ИнформацияОКниге" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ИнформацияОЧитателе" EntityType="Self.ИнформацияОЧитателе" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ПаспортныеДанные" EntityType="Self.ПаспортныеДанные" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="КнигаАвтор" EntityType="Self.КнигаАвтор" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [КнигаАвтор].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
@@ -258,6 +281,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ИнформацияОЧитателе_ПаспортныеДанные" Association="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные">
             <End Role="ПаспортныеДанные" EntitySet="ПаспортныеДанные" />
+            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ИнформацияОЧитателе_Пользователь" Association="Self.FK_ИнформацияОЧитателе_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
             <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
           </AssociationSet>
           <AssociationSet Name="FK_КнигаАвтор_Авторы" Association="Self.FK_КнигаАвтор_Авторы">
@@ -360,15 +387,15 @@
             <PropertyRef Name="НомерБилета" />
           </Key>
           <Property Name="НомерБилета" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Телефон" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="КодПаспорта" Type="Int32" Nullable="false" />
-          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="КодПользователя" Type="Int32" />
           <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_ИнформацияОЧитателе" FromRole="ИнформацияОЧитателе" ToRole="ВыдачаКниги" />
           <NavigationProperty Name="ПаспортныеДанные" Relationship="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные" FromRole="ИнформацияОЧитателе" ToRole="ПаспортныеДанные" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_ИнформацияОЧитателе_Пользователь" FromRole="ИнформацияОЧитателе" ToRole="Пользователь" />
         </EntityType>
         <EntityType Name="ПаспортныеДанные">
           <Key>
@@ -380,6 +407,18 @@
           <Property Name="Номер" Type="Int32" Nullable="false" />
           <Property Name="КодПодразделения" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ИнформацияОЧитателе" Relationship="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные" FromRole="ПаспортныеДанные" ToRole="ИнформацияОЧитателе" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="КодПользователя" />
+          </Key>
+          <Property Name="КодПользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ИнформацияОЧитателе" Relationship="Self.FK_ИнформацияОЧитателе_Пользователь" FromRole="Пользователь" ToRole="ИнформацияОЧитателе" />
         </EntityType>
         <Association Name="FK_ВыдачаКниги_ИнформацияОКниге">
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
@@ -441,6 +480,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ИнформацияОЧитателе_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="КодПользователя" />
+            </Principal>
+            <Dependent Role="ИнформацияОЧитателе">
+              <PropertyRef Name="КодПользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="КнигаАвтор">
           <End Role="Авторы" Type="Self.Авторы" Multiplicity="*" />
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
@@ -459,6 +510,7 @@
           <EntitySet Name="ИнформацияОКниге" EntityType="Self.ИнформацияОКниге" />
           <EntitySet Name="ИнформацияОЧитателе" EntityType="Self.ИнформацияОЧитателе" />
           <EntitySet Name="ПаспортныеДанные" EntityType="Self.ПаспортныеДанные" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
           <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОКниге" Association="Self.FK_ВыдачаКниги_ИнформацияОКниге">
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
             <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
@@ -477,6 +529,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ИнформацияОЧитателе_ПаспортныеДанные" Association="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные">
             <End Role="ПаспортныеДанные" EntitySet="ПаспортныеДанные" />
+            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ИнформацияОЧитателе_Пользователь" Association="Self.FK_ИнформацияОЧитателе_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
             <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
           </AssociationSet>
           <AssociationSet Name="КнигаАвтор" Association="Self.КнигаАвтор">
@@ -572,8 +628,7 @@
                 <ScalarProperty Name="Отчество" ColumnName="Отчество" />
                 <ScalarProperty Name="Телефон" ColumnName="Телефон" />
                 <ScalarProperty Name="КодПаспорта" ColumnName="КодПаспорта" />
-                <ScalarProperty Name="Логин" ColumnName="Логин" />
-                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="КодПользователя" ColumnName="КодПользователя" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -585,6 +640,18 @@
                 <ScalarProperty Name="Серия" ColumnName="Серия" />
                 <ScalarProperty Name="Номер" ColumnName="Номер" />
                 <ScalarProperty Name="КодПодразделения" ColumnName="КодПодразделения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователь">
+            <EntityTypeMapping TypeName="библModel.Пользователь">
+              <MappingFragment StoreEntitySet="Пользователь">
+                <ScalarProperty Name="КодПользователя" ColumnName="КодПользователя" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

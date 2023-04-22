@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f20e2917f9354f12bb03fe559ac130c9" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="f2e974981c6d4dc88fbc32e640e8b8ef" Name="Diagram1">
         <EntityTypeShape EntityType="библModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="библModel.Авторы" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="библModel.ВыдачаКниги" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
@@ -12,13 +12,15 @@
         <EntityTypeShape EntityType="библModel.Жанры" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="библModel.Издательство" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="библModel.ИнформацияОКниге" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="библModel.ИнформацияОЧитателе" Width="1.5" PointX="7.875" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="библModel.ПаспортныеДанные" Width="1.5" PointX="5.625" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="библModel.ИнформацияОЧитателе" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="библModel.ПаспортныеДанные" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="библModel.Пользователь" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
         <AssociationConnector Association="библModel.FK_ВыдачаКниги_ИнформацияОКниге" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.FK_ВыдачаКниги_ИнформацияОЧитателе" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.FK_Издательство_Город" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.FK_ИнформацияОКниге_Издательство" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.FK_ИнформацияОЧитателе_ПаспортныеДанные" ManuallyRouted="false" />
+        <AssociationConnector Association="библModel.FK_ИнформацияОЧитателе_Пользователь" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.КнигаАвтор" ManuallyRouted="false" />
         <AssociationConnector Association="библModel.КнигаЖанр" ManuallyRouted="false" />
       </Diagram>

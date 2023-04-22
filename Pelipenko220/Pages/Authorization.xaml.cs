@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace Pelipenko220.Pages
 {
@@ -43,13 +44,20 @@ namespace Pelipenko220.Pages
 
             using (var db = new Entities())
             {
-                var user = db.ИнформацияОЧитателе.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == PassBox.Password);
+                var user = db.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == GetHash(PassBox.Password));
 
                 if (user == null) 
                 {
                     MessageBox.Show("Пользователь с такими данными не найден!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+            }
+        }
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
             }
         }
 

@@ -96,6 +96,9 @@
     <Compile Include="ПаспортныеДанные.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Пользователь.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

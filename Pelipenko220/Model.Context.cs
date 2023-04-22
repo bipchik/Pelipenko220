@@ -34,5 +34,6 @@ namespace Pelipenko220
         public virtual DbSet<ИнформацияОКниге> ИнформацияОКниге { get; set; }
         public virtual DbSet<ИнформацияОЧитателе> ИнформацияОЧитателе { get; set; }
         public virtual DbSet<ПаспортныеДанные> ПаспортныеДанные { get; set; }
+        public virtual DbSet<Пользователь> Пользователь { get; set; }
     }
 }
