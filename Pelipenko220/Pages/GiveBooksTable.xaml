@@ -16,11 +16,9 @@
         <DataGrid Grid.Row="0" Name="DataGridGiveBooks" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название книги" Binding="{Binding ИнформацияОКниге.Название}" Width="100"/>
-                <DataGridTextColumn Header="Номер билета" Binding="{Binding НомерБилета}" Width="100"/>
-                <DataGridTextColumn Header="Издательство" Binding="{Binding ИнформацияОЧитателе.ФИО}" Width="100"/>
-                <DataGridTextColumn Header="Год издания" Binding="{Binding ГодИздания}" Width="80"/>
-                <DataGridTextColumn Header="Количество страниц" Binding="{Binding КолвоСтраниц}" Width="60"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Цена}" Width="60"/>
+                <DataGridTextColumn Header="ФИО читателя" Binding="{Binding ИнформацияОЧитателе.ФИО}" Width="100"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding ДатаВыдачи}" Width="80"/>
+                <DataGridTextColumn Header="Дата возврата" Binding="{Binding ДатаВозврата}" Width="90"/>
 
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>

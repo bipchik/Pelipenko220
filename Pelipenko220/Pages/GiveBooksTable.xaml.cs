@@ -23,6 +23,23 @@ namespace Pelipenko220.Pages
         public GiveBooksTable()
         {
             InitializeComponent();
+            DataGridGiveBooks.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
         }
-    }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/AddGiveBooksTable.xaml", UriKind.Relative));
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }   
 }

@@ -81,11 +81,11 @@ namespace Pelipenko220
         void Export(string path)
         {
             StreamWriter sw = new StreamWriter(path);
-            using (var db = new Entities())
+            using (var db = new библEntities1())
             {
                 foreach (var element in db.Пользователь)
                 {
-                    sw.WriteLine($"{element.КодПользователя} {element.Фамилия} {element.Имя} {element.Отчество} {element.Логин} {element.Пароль}");
+                    sw.WriteLine($"{element.КодПользователя} {element.ФИО} {element.Логин} {element.Пароль}");
                 }
             }
             sw.Close();

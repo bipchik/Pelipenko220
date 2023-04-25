@@ -23,7 +23,7 @@ namespace Pelipenko220.Pages
         public AuthorsTable()
         {
             InitializeComponent();
-            DataGridAuthors.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
+            DataGridAuthors.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
         }
         private void Del_Click(object sender, RoutedEventArgs e)
         {

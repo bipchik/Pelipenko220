@@ -23,7 +23,7 @@ namespace Pelipenko220.Pages
         public BooksTable()
         {
             InitializeComponent();
-            DataGridBooks.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
+            DataGridBooks.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)

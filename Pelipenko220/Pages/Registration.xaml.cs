@@ -28,7 +28,7 @@ namespace Pelipenko220.Pages
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
             //проверка на пустые поля
-            if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(SernameInput.Text) || string.IsNullOrEmpty(NameInput.Text))
+            if (string.IsNullOrEmpty(LoginInput.Text) || string.IsNullOrEmpty(PassInput.Password) || string.IsNullOrEmpty(ChekPassInput.Password) || string.IsNullOrEmpty(fioInput.Text))
             {
                 MessageBox.Show("Заполните все обязтельные поля!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -66,7 +66,7 @@ namespace Pelipenko220.Pages
                 MessageBox.Show("Пароли не совпадают!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            using (var db1 = new Entities())
+            using (var db1 = new библEntities1())
             {
                 var user = db1.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
 
@@ -77,12 +77,10 @@ namespace Pelipenko220.Pages
                 }
 
                 //запись в БД
-                Entities db2 = new Entities();
+                библEntities1 db2 = new библEntities1();
                 Пользователь userObject = new Пользователь
                 {
-                    Фамилия = SernameInput.Text,
-                    Имя = NameInput.Text,
-                    Отчество = PatInput.Text,
+                    ФИО = fioInput.Text,
                     Логин = LoginInput.Text,
                     Пароль = GetHash(PassInput.Password)
                 };
@@ -103,8 +101,7 @@ namespace Pelipenko220.Pages
         public void Reset()
         {
             LoginInput.Text = "";
-            SernameInput.Text = "";
-            PatInput.Text = "";
+            fioInput.Text = "";
             PassInput.Password = "";
             ChekPassInput.Password = "";
         }
@@ -123,28 +120,12 @@ namespace Pelipenko220.Pages
                 HintLogin.Visibility = Visibility.Hidden;
             }
         }
-        private void SernameBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void fioBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            HintSername.Visibility = Visibility.Visible;
-            if (SernameInput.Text.Length > 0)
+            HintFio.Visibility = Visibility.Visible;
+            if (fioInput.Text.Length > 0)
             {
-                HintSername.Visibility = Visibility.Hidden;
-            }
-        }
-        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            HintName.Visibility = Visibility.Visible;
-            if (NameInput.Text.Length > 0)
-            {
-                HintName.Visibility = Visibility.Hidden;
-            }
-        }
-        private void PatBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            HintPat.Visibility = Visibility.Visible;
-            if (PatInput.Text.Length > 0)
-            {
-                HintPat.Visibility = Visibility.Hidden;
+                HintFio.Visibility = Visibility.Hidden;
             }
         }
         private void PassBox_Changed(object sender, RoutedEventArgs e)

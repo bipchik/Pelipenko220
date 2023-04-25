@@ -42,7 +42,7 @@ namespace Pelipenko220.Pages
                 return;
             }
 
-            using (var db = new Entities())
+            using (var db = new библEntities1())
             {
                 string HashPass = GetHash(PassBox.Password);
                 var user = db.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == HashPass);
