@@ -44,14 +44,21 @@ namespace Pelipenko220.Pages
 
             using (var db = new Entities())
             {
-                var user = db.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == GetHash(PassBox.Password));
+                string HashPass = GetHash(PassBox.Password);
+                var user = db.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == HashPass);
 
                 if (user == null) 
                 {
                     MessageBox.Show("Пользователь с такими данными не найден!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                else
+                {
+                    NavigationService nav = NavigationService.GetNavigationService(this);
+                    nav.Navigate(new Uri("/Pages/Tables.xaml", UriKind.Relative));
+                }
             }
+
         }
         public static string GetHash(string password)
         {

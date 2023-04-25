@@ -110,5 +110,9 @@ namespace Pelipenko220
                 MessageBox.Show(fileContent, "Содержание файла.");
             }
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }

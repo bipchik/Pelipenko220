@@ -91,6 +91,8 @@ namespace Pelipenko220.Pages
 
                 MessageBox.Show("Пользователь зарегестрирован!", "Регистрация завершена!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/Tables.xaml", UriKind.Relative));
         }
         
         private void Cancel_Click(object sender, RoutedEventArgs e)

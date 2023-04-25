@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#4682B4"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#003153"/>
         <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="TextBox">
@@ -16,7 +15,7 @@
         <Setter Property="BorderBrush" Value="White"/>
     </Style>
     <Style TargetType="ToolTip">
-        <Setter Property="Background" Value="#256d7b"/>
+        <Setter Property="Background" Value="#003153"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Black"/>
     </Style>
@@ -27,6 +26,6 @@
         <Setter Property="Background" Value="#1a3547"/>
     </Style>
     <Style TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="#06b8af"/>
     </Style>
 </ResourceDictionary>
