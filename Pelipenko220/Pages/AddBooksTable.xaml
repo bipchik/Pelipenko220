@@ -16,22 +16,25 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Название" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Издательство" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Год издания" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Количество страниц" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Цена" Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBox Grid.Row="0" Grid.Column="1"/>
-        <TextBox Grid.Row="1" Grid.Column="1"/>
-        <TextBox Grid.Row="2" Grid.Column="1"/>
-        <TextBox Grid.Row="3" Grid.Column="1"/>
-        <TextBox Grid.Row="4" Grid.Column="1"/>
-        <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
+        <TextBlock Text="Автор(ы)" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Издательство" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Год издания" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Количество страниц" Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Цена" Grid.Row="5" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Название}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Авторы.ФИО}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Издательство.Название}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ГодИздания}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding КолвоСтраниц}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Цена}"/>
+        <Button Name="Save" Content="Сохранить" Grid.Row="6" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 
 </Page>

@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:Pelipenko220.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BooksTable">
+      Title="BooksTable"
+      IsVisibleChanged="BooksTable_IsVisibleChanged">
+    
 
     <Grid>
         <Grid.RowDefinitions>

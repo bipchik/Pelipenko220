@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:Pelipenko220.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GiveBooksTable">
+      Title="GiveBooksTable"
+      IsVisibleChanged="GiveBooksTable_IsVisibleChanged">
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,8 +19,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название книги" Binding="{Binding ИнформацияОКниге.Название}" Width="100"/>
                 <DataGridTextColumn Header="ФИО читателя" Binding="{Binding ИнформацияОЧитателе.ФИО}" Width="100"/>
-                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding ДатаВыдачи}" Width="80"/>
-                <DataGridTextColumn Header="Дата возврата" Binding="{Binding ДатаВозврата}" Width="90"/>
+                <DataGridTextColumn x:Name="GiveData" Header="Дата выдачи" Binding="{Binding ДатаВыдачи}" Width="80"/>
+                <DataGridTextColumn x:Name="TakeData" Header="Дата возврата" Binding="{Binding ДатаВозврата}" Width="90"/>
 
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>

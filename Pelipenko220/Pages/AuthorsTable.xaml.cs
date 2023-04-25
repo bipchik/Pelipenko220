@@ -40,5 +40,13 @@ namespace Pelipenko220.Pages
         {
 
         }
+        private void AuthorTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
+            }
+        }
     }
 }

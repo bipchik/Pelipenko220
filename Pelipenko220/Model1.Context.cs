@@ -21,7 +21,7 @@ namespace Pelipenko220
         }
 
         private static библEntities1 _context;
-        public static библEntities1 GetContext()
+    public static библEntities1 GetContext()
         {
             if (_context == null)
                 _context = new библEntities1();

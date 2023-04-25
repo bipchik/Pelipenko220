@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="ФИО" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBox Grid.Row="0" Grid.Column="1"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ФИО}"/>
         <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 </Page>

@@ -34,12 +34,20 @@ namespace Pelipenko220.Pages
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddGiveBooksTable.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/AddGiveBooks.xaml", UriKind.Relative));
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void GiveBooksTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridGiveBooks.ItemsSource = библEntities1.GetContext().ВыдачаКниги.ToList();
+            }
         }
     }   
 }
