@@ -31,6 +31,8 @@ namespace Pelipenko220.Pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentBook.Название))
                 errors.AppendLine("Укажите название книги!");
+            if (string.IsNullOrWhiteSpace(_currentBook.Название))
+                errors.AppendLine("Укажите название книги!");
             if (_currentBook.Авторы == null)
                 errors.AppendLine("Укажите автора книги!");
             if (_currentBook.Издательство == null)

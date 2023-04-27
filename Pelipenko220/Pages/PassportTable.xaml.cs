@@ -16,36 +16,36 @@ using System.Windows.Shapes;
 namespace Pelipenko220.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthorsTable.xaml
+    /// Логика взаимодействия для PassportTable.xaml
     /// </summary>
-    public partial class AuthorsTable : Page
+    public partial class PassportTable : Page
     {
-        public AuthorsTable()
+        public PassportTable()
         {
             InitializeComponent();
-            DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
-        }
-        private void Del_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataGridPassports.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddAuthorsTable.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/AddPassportTable.xaml", UriKind.Relative));
         }
 
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void AuthorTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void PasswordTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
                 библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
+                DataGridPassports.ItemsSource = библEntities1.GetContext().ПаспортныеДанные.ToList();
             }
         }
     }

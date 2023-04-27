@@ -16,36 +16,36 @@ using System.Windows.Shapes;
 namespace Pelipenko220.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthorsTable.xaml
+    /// Логика взаимодействия для IzdatelstvoTable.xaml
     /// </summary>
-    public partial class AuthorsTable : Page
+    public partial class IzdatelstvoTable : Page
     {
-        public AuthorsTable()
+        public IzdatelstvoTable()
         {
             InitializeComponent();
-            DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
-        }
-        private void Del_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataGridIzdatelstvo.ItemsSource = библEntities1.GetContext().Издательство.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddAuthorsTable.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/AddIzdatelstvoTable.xaml", UriKind.Relative));
         }
 
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void AuthorTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void IzdatelstvoTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
                 библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
+                DataGridIzdatelstvo.ItemsSource = библEntities1.GetContext().Издательство.ToList();
             }
         }
     }

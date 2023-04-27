@@ -25,10 +25,10 @@ namespace Pelipenko220.Pages
             InitializeComponent();
         }
         
-        private void Books_Click (object sender, RoutedEventArgs e)
+        private void Passport_Click (object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/BooksTable.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/PassportTable.xaml", UriKind.Relative));
         }
 
         private void Authors_Click (object sender, RoutedEventArgs e)
@@ -37,10 +37,10 @@ namespace Pelipenko220.Pages
             nav.Navigate(new Uri("/Pages/AuthorsTable.xaml", UriKind.Relative));
         }
 
-        private void GiveBooks_Click (object sender, RoutedEventArgs e)
+        private void Izdatelstvo_Click (object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/GiveBooksTable.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/IzdatelstvoTable.xaml", UriKind.Relative));
         }
     }
 }

@@ -90,6 +90,12 @@
     <Compile Include="Pages\AddGiveBooks.xaml.cs">
       <DependentUpon>AddGiveBooks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddIzdatelstvoTable.xaml.cs">
+      <DependentUpon>AddIzdatelstvoTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPassportTable.xaml.cs">
+      <DependentUpon>AddPassportTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AuthorsTable.xaml.cs">
       <DependentUpon>AuthorsTable.xaml</DependentUpon>
     </Compile>
@@ -98,6 +104,12 @@
     </Compile>
     <Compile Include="Pages\GiveBooksTable.xaml.cs">
       <DependentUpon>GiveBooksTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IzdatelstvoTable.xaml.cs">
+      <DependentUpon>IzdatelstvoTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PassportTable.xaml.cs">
+      <DependentUpon>PassportTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Tables.xaml.cs">
       <DependentUpon>Tables.xaml</DependentUpon>
@@ -161,6 +173,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddIzdatelstvoTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPassportTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +194,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\GiveBooksTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\IzdatelstvoTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PassportTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
