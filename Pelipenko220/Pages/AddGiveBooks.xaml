@@ -26,8 +26,8 @@
         <TextBlock Text="Дата возврата" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ИнформацияОКниг.Название}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ИнформацияОЧитателе.ФИО}"/>
-        <DatePicker x:Name="GiveDate" Grid.Row="2" Grid.Column="1" Text ="{Binding ДатаВыдачи}"/>
-        <DatePicker x:Name="TakeDate" Grid.Row="3" Grid.Column="1" Text ="{Binding ДатаВозврата}"/>
+        <DatePicker x:Name="GiveDate" Grid.Row="2" Grid.Column="1" Text ="{Binding ДатаВыдачи}" SelectedDateFormat="Short" Foreground="White" />
+        <DatePicker x:Name="TakeDate" Grid.Row="3" Grid.Column="1" Text ="{Binding ДатаВозврата}" SelectedDateFormat="Short" Foreground="White"/>
         <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 </Page>

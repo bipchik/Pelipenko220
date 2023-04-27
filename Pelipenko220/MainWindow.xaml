@@ -17,7 +17,7 @@
             <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Frame NavigationUIVisibility="Visible" x:Name="MainFrame" Grid.Row="1" Source="Pages/Authorization.xaml"/>
+        <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame" Grid.Row="1" Source="Pages/Authorization.xaml"/>
         <Label x:Name="label1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="16"></Label>
         <Button HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="67" Margin="10,0,0,0" Click="Back_Click">Назад</Button>
         <Button x:Name="Light" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="77" Margin="0,0,82,0" RenderTransformOrigin="0.507,0.173" Click="Light_Click">Светлая тема</Button>

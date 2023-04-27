@@ -35,8 +35,10 @@ namespace Pelipenko220.Pages
                 errors.AppendLine("Укажите ФИО читателя!");
             if (GiveDate.SelectedDate == null)
                 errors.AppendLine("Укажите дату выдачи книги!");
+            else _currentGiveBook.ДатаВыдачи = (DateTime)GiveDate.SelectedDate;
             if (TakeDate.SelectedDate == null)
                 errors.AppendLine("Укажите дату возврата книги!");
+            else _currentGiveBook.ДатаВозврата = TakeDate.SelectedDate;
             //Проверяем переменную errors на наличие ошибок
             if (errors.Length > 0)
             {

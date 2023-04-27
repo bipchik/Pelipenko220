@@ -35,9 +35,9 @@ namespace Pelipenko220.Pages
                 errors.AppendLine("Укажите автора книги!");
             if (_currentBook.Издательство == null)
                 errors.AppendLine("Укажите издательство книги!");
-            if (_currentBook.ГодИздания > 0)
+            if (_currentBook.ГодИздания <= 0)
                 errors.AppendLine("Укажите год издания книги!");
-            if (_currentBook.КолвоСтраниц > 0)
+            if (_currentBook.КолвоСтраниц <= 0)
                 errors.AppendLine("Укажите количество страниц книги!");
             //Проверяем переменную errors на наличие ошибок
             if (errors.Length > 0)

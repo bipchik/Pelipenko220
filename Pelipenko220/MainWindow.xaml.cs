@@ -112,7 +112,7 @@ namespace Pelipenko220
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (MainFrame.CanGoBack) MainFrame.GoBack();
         }
     }
 }
