@@ -29,8 +29,8 @@
         <TextBlock Text="Количество страниц" Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
         <TextBlock Text="Цена" Grid.Row="5" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Название}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Авторы.ФИО}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Издательство.Название}"/>
+        <ComboBox Name="AuthorCmbBox" SelectedItem="{Binding Авторы}" DisplayMemberPath="ФИО" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox Name="IzdatelstvoCmbBox" SelectedItem="{Binding Издательство}" DisplayMemberPath="Название" Grid.Row="2" Grid.Column="1"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ГодИздания}"/>
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding КолвоСтраниц}"/>
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Цена}"/>

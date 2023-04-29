@@ -23,29 +23,40 @@ namespace Pelipenko220.Pages
         public PassportTable()
         {
             InitializeComponent();
-            DataGridPassports.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
+            DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddPassportTable.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Pages.AddPassportTable((sender as Button).DataContext as ПаспортныеДанные));
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
+            var PassportsForRemoving = DataGridPassports.SelectedItems.Cast<ПаспортныеДанные>().ToList();
 
-        }
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {PassportsForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().ПаспортныеДанные.RemoveRange(PassportsForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
         private void PasswordTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridPassports.ItemsSource = библEntities1.GetContext().ПаспортныеДанные.ToList();
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
             }
         }
     }

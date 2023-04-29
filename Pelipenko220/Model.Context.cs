@@ -13,20 +13,21 @@ namespace Pelipenko220
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class библEntities1 : DbContext
+    public partial class Entities : DbContext
     {
-        public библEntities1()
-            : base("name=библEntities1")
+        public Entities()
+            : base("name=Entities")
         {
         }
-
-        private static библEntities1 _context;
-    public static библEntities1 GetContext()
+        private static Entities _context;
+        public static Entities GetContext()
         {
             if (_context == null)
-                _context = new библEntities1();
+                _context = new Entities();
             return _context;
         }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

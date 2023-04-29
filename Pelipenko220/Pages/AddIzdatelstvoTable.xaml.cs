@@ -20,11 +20,15 @@ namespace Pelipenko220.Pages
     /// </summary>
     public partial class AddIzdatelstvoTable : Page
     {
-        public AddIzdatelstvoTable()
+        public AddIzdatelstvoTable(Издательство selectedIzdatelstvo)
         {
             InitializeComponent();
+
+            if (selectedIzdatelstvo != null)
+                _currentIzdatelstvo = selectedIzdatelstvo;
+
             DataContext = _currentIzdatelstvo;
-            CityCmbBox.ItemsSource = библEntities1.GetContext().Город.ToList();
+            CityCmbBox.ItemsSource = Entities.GetContext().Город.ToList();
         }
         private Издательство _currentIzdatelstvo = new Издательство();
 
@@ -44,10 +48,10 @@ namespace Pelipenko220.Pages
             }
             //Добавляем в объект Cars новую запись
             if (_currentIzdatelstvo.КодИздательства == 0)
-                библEntities1.GetContext().Издательство.Add(_currentIzdatelstvo);
+                Entities.GetContext().Издательство.Add(_currentIzdatelstvo);
             try
             {
-                библEntities1.GetContext().SaveChanges();
+                Entities.GetContext().SaveChanges();
                 MessageBox.Show("Данные успешно сохранены!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

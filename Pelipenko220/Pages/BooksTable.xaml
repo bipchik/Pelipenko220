@@ -27,13 +27,13 @@
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="ButtonEdit" ToolTip="Для редактирования данных базы, нажмите на эту кнопку." Content="Редактировать" Click="Edit_Click"/>
+                            <Button x:Name="ButtonEdit" ToolTip="Для редактирования данных базы, нажмите на эту кнопку." Content="Редактировать" Click="AddEdit_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="Add_Click" Height="35" VerticalAlignment="Top" Margin="10,14,0,0" Width="107"/>
+        <Button Grid.Row="1" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="AddEdit_Click" Height="35" VerticalAlignment="Top" Margin="10,14,0,0" Width="107"/>
         <Button Grid.Row="1" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Left" Click="Del_Click" Margin="683,14,0,24" Width="107"/>
     </Grid>
 </Page>

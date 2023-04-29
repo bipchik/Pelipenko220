@@ -20,16 +20,20 @@ namespace Pelipenko220.Pages
     /// </summary>
     public partial class AddAuthorsTable : Page
     {
-        public AddAuthorsTable()
+        public AddAuthorsTable(Авторы selectedAuthors)
         {
             InitializeComponent();
-            DataContext = _currentAuthor;
+
+            if (selectedAuthors != null)
+                _currentAuthors = selectedAuthors;
+
+            DataContext = _currentAuthors;
         }
-        private Авторы _currentAuthor = new Авторы();
+        private Авторы _currentAuthors = new Авторы();
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(_currentAuthor.ФИО))
+            if (string.IsNullOrWhiteSpace(_currentAuthors.ФИО))
                 errors.AppendLine("Введите ФИО автора!");
             if (errors.Length > 0)
             {
@@ -37,11 +41,11 @@ namespace Pelipenko220.Pages
                 return;
             }
             //Добавляем в объект Cars новую запись
-            if (_currentAuthor.КодАвтора == 0)
-                библEntities1.GetContext().Авторы.Add(_currentAuthor);
+            if (_currentAuthors.КодАвтора == 0)
+                Entities.GetContext().Авторы.Add(_currentAuthors);
             try
             {
-                библEntities1.GetContext().SaveChanges();
+                Entities.GetContext().SaveChanges();
                 MessageBox.Show("Данные успешно сохранены!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

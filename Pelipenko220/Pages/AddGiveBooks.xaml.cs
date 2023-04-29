@@ -20,10 +20,16 @@ namespace Pelipenko220.Pages
     /// </summary>
     public partial class AddGiveBooks : Page
     {
-        public AddGiveBooks()
+        public AddGiveBooks(ВыдачаКниги selectedGiveBook)
         {
             InitializeComponent();
+
+            if (selectedGiveBook != null)
+                _currentGiveBook = selectedGiveBook;
+
             DataContext = _currentGiveBook;
+            BookNameCmbBox.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
+            ReaderCmbBox.ItemsSource = Entities.GetContext().ИнформацияОЧитателе.ToList();
         }
         private ВыдачаКниги _currentGiveBook = new ВыдачаКниги();
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -47,10 +53,10 @@ namespace Pelipenko220.Pages
             }
             //Добавляем в объект Cars новую запись
             if (_currentGiveBook.ИнвентарныйНомер == 0)
-                библEntities1.GetContext().ВыдачаКниги.Add(_currentGiveBook);
+                Entities.GetContext().ВыдачаКниги.Add(_currentGiveBook);
             try
             {
-                библEntities1.GetContext().SaveChanges();
+                Entities.GetContext().SaveChanges();
                 MessageBox.Show("Данные успешно сохранены!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

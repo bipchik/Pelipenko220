@@ -66,7 +66,7 @@ namespace Pelipenko220.Pages
                 MessageBox.Show("Пароли не совпадают!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            using (var db1 = new библEntities1())
+            using (var db1 = new Entities())
             {
                 var user = db1.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
 
@@ -77,7 +77,7 @@ namespace Pelipenko220.Pages
                 }
 
                 //запись в БД
-                библEntities1 db2 = new библEntities1();
+                Entities db2 = new Entities();
                 Пользователь userObject = new Пользователь
                 {
                     ФИО = fioInput.Text,

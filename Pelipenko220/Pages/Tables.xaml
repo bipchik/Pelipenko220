@@ -13,11 +13,14 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="Books" Grid.Row="0" Content="Паспортные данные" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" Width="161" FontSize="16" Click="Passport_Click" Margin="316,58,323,58"/>
+        <Button x:Name="Passport" Grid.Row="0" Content="Паспортные данные" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" Width="161" FontSize="16" Click="Passport_Click"/>
         <Button x:Name="Authors" Grid.Row="1" Content="Авторы" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="34" FontSize="16" Click="Authors_Click"/>
-        <Button x:Name="GiveBooks" Grid.Row="2" Content="Издательство" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="34" FontSize="16" Click="Izdatelstvo_Click"/>
-
+        <Button x:Name="Izdatelstvo" Grid.Row="2" Content="Издательство" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="34" FontSize="16" Click="Izdatelstvo_Click"/>
+        <Button x:Name="Books" Grid.Row="3" Content="Книги" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="34" FontSize="16" Click="Books_Click"/>
+        <Button x:Name="GiveBooks" Grid.Row="4" Content="Выдача книги" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="34" FontSize="16" Click="GiveBooks_Click"/>
     </Grid>
 </Page>

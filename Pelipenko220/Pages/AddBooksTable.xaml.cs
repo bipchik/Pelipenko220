@@ -20,10 +20,16 @@ namespace Pelipenko220.Pages
     /// </summary>
     public partial class AddBooksTable : Page
     {
-        public AddBooksTable()
+        public AddBooksTable(ИнформацияОКниге selectedBook)
         {
             InitializeComponent();
+
+            if (selectedBook != null)
+                _currentBook = selectedBook;
+
             DataContext = _currentBook;
+            AuthorCmbBox.ItemsSource = Entities.GetContext().Авторы.ToList();
+            IzdatelstvoCmbBox.ItemsSource = Entities.GetContext().Издательство.ToList();
         }
         private ИнформацияОКниге _currentBook = new ИнформацияОКниге();
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -34,9 +40,9 @@ namespace Pelipenko220.Pages
             if (string.IsNullOrWhiteSpace(_currentBook.Название))
                 errors.AppendLine("Укажите название книги!");
             if (_currentBook.Авторы == null)
-                errors.AppendLine("Укажите автора книги!");
+                errors.AppendLine("Выберите автора книги!");
             if (_currentBook.Издательство == null)
-                errors.AppendLine("Укажите издательство книги!");
+                errors.AppendLine("Выберите издательство книги!");
             if (_currentBook.ГодИздания <= 0)
                 errors.AppendLine("Укажите год издания книги!");
             if (_currentBook.КолвоСтраниц <= 0)
@@ -49,10 +55,10 @@ namespace Pelipenko220.Pages
             }
             //Добавляем в объект Cars новую запись
             if (_currentBook.ИнвентарныйНомер == 0)
-                библEntities1.GetContext().ИнформацияОКниге.Add(_currentBook);
+                Entities.GetContext().ИнформацияОКниге.Add(_currentBook);
             try
             {
-                библEntities1.GetContext().SaveChanges();
+                Entities.GetContext().SaveChanges();
                 MessageBox.Show("Данные успешно сохранены!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

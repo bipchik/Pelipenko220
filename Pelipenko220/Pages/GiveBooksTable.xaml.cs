@@ -23,30 +23,40 @@ namespace Pelipenko220.Pages
         public GiveBooksTable()
         {
             InitializeComponent();
-            DataGridGiveBooks.ItemsSource = библEntities1.GetContext().ИнформацияОКниге.ToList();
+            DataGridGiveBooks.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
+            var GiveBooksForRemoving = DataGridGiveBooks.SelectedItems.Cast<ВыдачаКниги>().ToList();
 
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {GiveBooksForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().ВыдачаКниги.RemoveRange(GiveBooksForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
+
+                    DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddGiveBooks.xaml", UriKind.Relative));
-        }
-
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.Navigate(new Pages.AddGiveBooks((sender as Button).DataContext as ВыдачаКниги));
         }
         private void GiveBooksTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridGiveBooks.ItemsSource = библEntities1.GetContext().ВыдачаКниги.ToList();
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
             }
         }
     }   

@@ -467,7 +467,7 @@
           <End Role="Жанры" Type="Self.Жанры" Multiplicity="*" />
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="библEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Авторы" EntityType="Self.Авторы" />
           <EntitySet Name="ВыдачаКниги" EntityType="Self.ВыдачаКниги" />
           <EntitySet Name="Город" EntityType="Self.Город" />
@@ -515,7 +515,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище библModelContainer" CdmEntityContainer="библEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище библModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Авторы">
             <EntityTypeMapping TypeName="библModel.Авторы">
               <MappingFragment StoreEntitySet="Авторы">

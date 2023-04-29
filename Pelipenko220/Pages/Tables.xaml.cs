@@ -42,5 +42,17 @@ namespace Pelipenko220.Pages
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/Pages/IzdatelstvoTable.xaml", UriKind.Relative));
         }
+
+        private void Books_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/BooksTable.xaml", UriKind.Relative));
+        }
+
+        private void GiveBooks_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/GiveBooksTable.xaml", UriKind.Relative));
+        }
     }
 }

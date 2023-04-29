@@ -81,7 +81,7 @@ namespace Pelipenko220
         void Export(string path)
         {
             StreamWriter sw = new StreamWriter(path);
-            using (var db = new библEntities1())
+            using (var db = new Entities())
             {
                 foreach (var element in db.Пользователь)
                 {

@@ -23,29 +23,40 @@ namespace Pelipenko220.Pages
         public IzdatelstvoTable()
         {
             InitializeComponent();
-            DataGridIzdatelstvo.ItemsSource = библEntities1.GetContext().Издательство.ToList();
+            DataGridIzdatelstvo.ItemsSource = Entities.GetContext().Издательство.ToList();
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddIzdatelstvoTable.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Pages.AddIzdatelstvoTable((sender as Button).DataContext as Издательство));
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
+            var IzdatelstvoForRemoving = DataGridIzdatelstvo.SelectedItems.Cast<Издательство>().ToList();
 
-        }
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {IzdatelstvoForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Издательство.RemoveRange(IzdatelstvoForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DataGridIzdatelstvo.ItemsSource = Entities.GetContext().Издательство.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
         private void IzdatelstvoTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridIzdatelstvo.ItemsSource = библEntities1.GetContext().Издательство.ToList();
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridIzdatelstvo.ItemsSource = Entities.GetContext().Издательство.ToList();
             }
         }
     }

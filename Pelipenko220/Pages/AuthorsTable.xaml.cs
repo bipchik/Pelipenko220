@@ -23,29 +23,39 @@ namespace Pelipenko220.Pages
         public AuthorsTable()
         {
             InitializeComponent();
-            DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
+            DataGridAuthors.ItemsSource = Entities.GetContext().Авторы.ToList();
         }
         private void Del_Click(object sender, RoutedEventArgs e)
         {
+            var AuthorsForRemoving = DataGridAuthors.SelectedItems.Cast<Авторы>().ToList();
 
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {AuthorsForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Авторы.RemoveRange(AuthorsForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
+
+                    DataGridAuthors.ItemsSource = Entities.GetContext().Авторы.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddEdit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/AddAuthorsTable.xaml", UriKind.Relative));
-        }
-
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.Navigate(new Pages.AddAuthorsTable((sender as Button).DataContext as Авторы));
         }
         private void AuthorTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                библEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridAuthors.ItemsSource = библEntities1.GetContext().Авторы.ToList();
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DataGridAuthors.ItemsSource = Entities.GetContext().Авторы.ToList();
             }
         }
     }
