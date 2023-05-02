@@ -58,7 +58,13 @@ namespace Pelipenko220.Pages
         private void Users_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/UsersList.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/UsersPage.xaml", UriKind.Relative));
+        }
+
+        private void BooksPictures_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/Pages/BooksPage.xaml", UriKind.Relative));
         }
     }
 }

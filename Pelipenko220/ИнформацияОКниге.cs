@@ -28,6 +28,7 @@ namespace Pelipenko220
         public int ГодИздания { get; set; }
         public int КолвоСтраниц { get; set; }
         public Nullable<double> Цена { get; set; }
+        public string Фото { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ВыдачаКниги> ВыдачаКниги { get; set; }

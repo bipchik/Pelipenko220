@@ -24,6 +24,7 @@ namespace Pelipenko220
         public string Логин { get; set; }
         public string Пароль { get; set; }
         public string ФИО { get; set; }
+        public string Фото { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ИнформацияОЧитателе> ИнформацияОЧитателе { get; set; }

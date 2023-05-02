@@ -98,6 +98,9 @@
     <Compile Include="Pages\AuthorsTable.xaml.cs">
       <DependentUpon>AuthorsTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BooksPage.xaml.cs">
+      <DependentUpon>BooksPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BooksTable.xaml.cs">
       <DependentUpon>BooksTable.xaml</DependentUpon>
     </Compile>
@@ -113,8 +116,11 @@
     <Compile Include="Pages\Tables.xaml.cs">
       <DependentUpon>Tables.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UsersList.xaml.cs">
-      <DependentUpon>UsersList.xaml</DependentUpon>
+    <Compile Include="Pages\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Авторы.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -191,6 +197,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\BooksPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\BooksTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,7 +225,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UsersList.xaml">
+    <Page Include="Pages\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +277,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\UserDefoult.png" />
+    <Resource Include="Resources\3.png" />
+    <Resource Include="Resources\1.png" />
+    <Resource Include="Resources\5.png" />
+    <Resource Include="Resources\6.png" />
+    <Resource Include="Resources\2.jpg" />
+    <Resource Include="Resources\4.jpg" />
+    <Resource Include="Resources\7.png" />
+    <Resource Include="Resources\8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\shaxta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -277,8 +301,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\UserDefoult.jfif" />
+    <Resource Include="Resources\6klass.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

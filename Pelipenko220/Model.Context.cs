@@ -20,19 +20,19 @@ namespace Pelipenko220
         {
         }
         private static Entities _context;
+
         public static Entities GetContext()
         {
             if (_context == null)
                 _context = new Entities();
             return _context;
         }
-
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Авторы> Авторы { get; set; }
         public virtual DbSet<ВыдачаКниги> ВыдачаКниги { get; set; }
         public virtual DbSet<Город> Город { get; set; }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Pelipenko220.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для UsersList.xaml
+    /// Логика взаимодействия для UsersPage.xaml
     /// </summary>
-    public partial class UsersList : Window
+    public partial class UsersPage : Page
     {
-        public UsersList()
+        public UsersPage()
         {
             InitializeComponent();
             var currentUsers = Entities.GetContext().Пользователь.ToList();

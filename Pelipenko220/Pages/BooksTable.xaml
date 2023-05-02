@@ -15,6 +15,7 @@
             <RowDefinition Height="377*"/>
             <RowDefinition Height="73*"/>
         </Grid.RowDefinitions>
+
         <DataGrid Grid.Row="0" Name="DataGridBooks" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="100"/>
