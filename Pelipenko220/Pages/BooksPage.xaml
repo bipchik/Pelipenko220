@@ -9,6 +9,20 @@
       Title="BooksPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WrapPanel  HorizontalAlignment="Center">
+            <TextBlock Text="Введите книгу для поиска: "/>
+            <TextBox x:Name="SearchBook" Width="186" TextChanged="SearchBook_TextChanged"/>
+            <TextBlock Text="  Сортировка книг: "/>
+            <ComboBox x:Name="CmbBoxSortBook" Width="117" SelectionChanged="CmbBoxSortBook_SelectionChanged">
+                <TextBlock>От А до Я</TextBlock>
+                <TextBlock>От Я до А</TextBlock>
+            </ComboBox>
+            <Button x:Name="Clear" Content="Очистить фильтр" HorizontalContentAlignment="Center" Width="121" Click="Clear_Click"/>
+        </WrapPanel>
         <ListView Name="BooksList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -35,7 +49,7 @@
                             <Image.Source>
                                 <Binding Path="Фото">
                                     <Binding.TargetNullValue>
-                                        <ImageSource>/Resources/UserDefoult.png</ImageSource>
+                                        <ImageSource>/Resources/ClearBook.png</ImageSource>
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>

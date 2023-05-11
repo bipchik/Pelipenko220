@@ -25,6 +25,39 @@ namespace Pelipenko220.Pages
             InitializeComponent();
             var currentUsers = Entities.GetContext().Пользователь.ToList();
             UserList.ItemsSource = currentUsers;
+            CmbBoxSortFIO.SelectedIndex = 0;
+        }
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFilters();
+        }
+
+        private void SearchFIO_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateUsers();
+        }
+
+        private void CmbBoxSortFIO_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUsers();
+        }
+        private void UpdateUsers()
+        {
+            //загружаем всех пользователей в список
+            var currentUsers = Entities.GetContext().Пользователь.ToList();
+
+            //осуществляем поиск по Ф.И.О. без учета регистра букв
+            currentUsers = currentUsers.Where(x => x.ФИО.ToLower().Contains(SearchFIO.Text.ToLower())).ToList();
+
+            //осуществляем сортировку в зависимости от выбора пользователя
+            if (CmbBoxSortFIO.SelectedIndex == 0)
+                UserList.ItemsSource = currentUsers.OrderBy(x => x.ФИО).ToList();
+            else UserList.ItemsSource = currentUsers.OrderByDescending(x => x.ФИО).ToList();
+        }
+        private void ClearFilters()
+        {
+            SearchFIO.Text = "";
+            CmbBoxSortFIO.Text = "";
         }
     }
 }

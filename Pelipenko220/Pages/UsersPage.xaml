@@ -16,12 +16,13 @@
         </Grid.RowDefinitions>
         <WrapPanel  HorizontalAlignment="Center">
             <TextBlock Text="Введите ФИО для поиска: "/>
-            <TextBox x:Name="SearchFIO" Width="186"/>
+            <TextBox x:Name="SearchFIO" Width="186" TextChanged="SearchFIO_TextChanged"/>
             <TextBlock Text="  Сортировка ФИО: "/>
-            <ComboBox x:Name="CmbBoxSortFIO" Width="117">
+            <ComboBox x:Name="CmbBoxSortFIO" Width="117" SelectionChanged="CmbBoxSortFIO_SelectionChanged">
                 <TextBlock>От А до Я</TextBlock>
                 <TextBlock>От Я до А</TextBlock>
             </ComboBox>
+            <Button x:Name="Clear" Content="Очистить фильтр" HorizontalContentAlignment="Center" Width="121" Click="Clear_Click"/>
         </WrapPanel>
         <ListView Name="UserList" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
