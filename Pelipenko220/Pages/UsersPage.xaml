@@ -18,7 +18,10 @@
             <TextBlock Text="Введите ФИО для поиска: "/>
             <TextBox x:Name="SearchFIO" Width="186"/>
             <TextBlock Text="  Сортировка ФИО: "/>
-            <ComboBox x:Name="CmbBoxSortFIO" Width="117"/>
+            <ComboBox x:Name="CmbBoxSortFIO" Width="117">
+                <TextBlock>От А до Я</TextBlock>
+                <TextBlock>От Я до А</TextBlock>
+            </ComboBox>
         </WrapPanel>
         <ListView Name="UserList" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
