@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище библModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище библModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -249,15 +249,15 @@
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="КнигаАвтор" EntityType="Self.КнигаАвтор" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [КнигаАвтор].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
-    [КнигаАвтор].[КодАвтора] AS [КодАвтора]
-    FROM [dbo].[КнигаАвтор] AS [КнигаАвтор]</DefiningQuery>
+[КнигаАвтор].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
+[КнигаАвтор].[КодАвтора] AS [КодАвтора]
+FROM [dbo].[КнигаАвтор] AS [КнигаАвтор]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="КнигаЖанр" EntityType="Self.КнигаЖанр" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [КнигаЖанр].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
-    [КнигаЖанр].[КодЖанра] AS [КодЖанра]
-    FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
+[КнигаЖанр].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
+[КнигаЖанр].[КодЖанра] AS [КодЖанра]
+FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОКниге" Association="Self.FK_ВыдачаКниги_ИнформацияОКниге">
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
@@ -675,7 +675,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

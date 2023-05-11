@@ -10,10 +10,17 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView Name="UserList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+        <WrapPanel>
+            <TextBlock Text="Введите ФИО для поиска: "/>
+            <TextBox x:Name="SearchFIO" Width="186"/>
+            <TextBlock Text="  Сортировка ФИО: "/>
+            <ComboBox x:Name="CmbBoxSortFIO" Width="117"/>
+        </WrapPanel>
+        <ListView Name="UserList" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -27,7 +34,7 @@
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="450"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Width="450" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center">
+                        <Image Width="450" Grid.Row="2" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="Фото">
                                     <Binding.TargetNullValue>
