@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <WrapPanel>
+        <WrapPanel  HorizontalAlignment="Center">
             <TextBlock Text="Введите ФИО для поиска: "/>
             <TextBox x:Name="SearchFIO" Width="186"/>
             <TextBlock Text="  Сортировка ФИО: "/>
