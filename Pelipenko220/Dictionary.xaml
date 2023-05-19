@@ -29,5 +29,8 @@
     <Style TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
     </Style>
+    <Style TargetType="ListView">
+        <Setter Property="Background" Value="#D1EEFC"/>
+    </Style>
 </ResourceDictionary>
     
