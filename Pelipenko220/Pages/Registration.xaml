@@ -13,7 +13,7 @@
         <TextBlock Text="*" Foreground="Red" Margin="144,68,646,361"/>
         <TextBlock Text="*" Foreground="Red" Margin="154,119,636,310"/>
         <TextBlock Text="*" Foreground="Red" Margin="191,170,599,259"/>
-        <TextBlock Text="*" Foreground="Red" Margin="173,221,614,208"/>
+        <TextBlock Text="*" Foreground="Red" Margin="136,219,651,210"/>
         <TextBlock Text="Обязательные поля" Margin="34,27,657,402"  />
         <Label Content="Введите логин" Margin="30,63,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="146"/>
         <TextBlock x:Name="HintLogin" Text="Логин " Foreground="Gray" FontSize="16" Margin="219,68,199,356"/>

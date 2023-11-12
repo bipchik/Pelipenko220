@@ -79,8 +79,8 @@ namespace Pelipenko220.Pages
 
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/Registration.xaml", UriKind.Relative));
+                this.NavigationService.Navigate(new Uri("/Pages/Registration.xaml", UriKind.Relative));
+
         }
     }
 }

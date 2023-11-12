@@ -1,35 +1,32 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#003153"/>
-        <Setter Property="Foreground" Value="#06b8af"/>
-        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Background" Value="#1d2a10"/>
+        <Setter Property="Foreground" Value="#cd8a39"/>
+        <Setter Property="BorderBrush" Value="#060d08"/>
     </Style>
     <Style TargetType="TextBox">
-        <Setter Property="Background" Value="#256d7b"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#cd8a39"/>
+        <Setter Property="BorderBrush" Value="#cd8a39"/>
     </Style>
     <Style TargetType="PasswordBox">
-        <Setter Property="Background" Value="#256d7b"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#cd8a39"/>
+        <Setter Property="BorderBrush" Value="#cd8a39"/>
     </Style>
     <Style TargetType="ToolTip">
-        <Setter Property="Background" Value="#003153"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#1d2a10"/>
         <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="Label">
         <Setter Property="Foreground" Value="White"/>
     </Style>
     <Style TargetType="Grid">
-        <Setter Property="Background" Value="#1a3547"/>
+        <Setter Property="Background" Value="#424a1b"/>
     </Style>
     <Style TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#06b8af"/>
+        <Setter Property="Foreground" Value="#cd8a39"/>
     </Style>
     <Style TargetType="ListView">
-        <Setter Property="Background" Value="#1a3547"/>
+        <Setter Property="Background" Value="#424a1b"/>
     </Style>
 </ResourceDictionary>
