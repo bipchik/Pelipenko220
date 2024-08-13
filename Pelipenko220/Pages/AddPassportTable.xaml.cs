@@ -25,7 +25,7 @@ namespace Pelipenko220.Pages
         {
             InitializeComponent();
 
-            if (selectedPassports != null )
+            if (selectedPassports != null)
                 _currentPassports = selectedPassports;
 
             DataContext = _currentPassports;
@@ -40,7 +40,13 @@ namespace Pelipenko220.Pages
             if (string.IsNullOrWhiteSpace(_currentPassports.КодПодразделения) || _currentPassports.КодПодразделения.Length != 6)
                 errors.AppendLine("Код подразделения должен содержать 6 цифр!");
             if (string.IsNullOrWhiteSpace(_currentPassports.СерияИНомер) || _currentPassports.СерияИНомер.Length != 10)
-                errors.AppendLine("Серия и номер должны содержать 9 цифр!");
+                errors.AppendLine("Серия и номер должны содержать 10 цифр!");
+
+            
+            if (IsSeriaAndNomerExists(_currentPassports.СерияИНомер))
+                errors.AppendLine("Паспорт с такой серией и номером уже существует!");
+            if (IsPodrazdelenieExists(_currentPassports.КодПодразделения))
+                errors.AppendLine("Паспорт с таким кодом подразделения уже существует!");
 
             // Проверяем переменную errors на наличие ошибок
             if (errors.Length > 0)
@@ -64,6 +70,17 @@ namespace Pelipenko220.Pages
             this.NavigationService.Navigate(new Uri("/Pages/PassportTable.xaml", UriKind.Relative));
         }
 
+        private bool IsSeriaAndNomerExists(string seriaAndNomer)
+        {
+            // Проверка на сущет серию и номер
+            return Entities.GetContext().ПаспортныеДанные.Any(p => p.СерияИНомер == seriaAndNomer);
+        }
+        private bool IsPodrazdelenieExists(string seriaAndNomer)
+        {
+            // Проверка на сущет подраздел
+            return Entities.GetContext().ПаспортныеДанные.Any(p => p.КодПодразделения == seriaAndNomer);
+        }
+
         private void KemVidan_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = new Regex("[^А-Я]+").IsMatch(e.Text);
@@ -78,6 +95,5 @@ namespace Pelipenko220.Pages
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
-
     }
 }
