@@ -37,16 +37,19 @@ namespace Pelipenko220.Pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentPassports.КемВыдан))
                 errors.AppendLine("Укажите кем выдан паспорт!");
-            if (_currentPassports.КодПодразделения < 6)
+            if (string.IsNullOrWhiteSpace(_currentPassports.КодПодразделения) || _currentPassports.КодПодразделения.Length != 6)
                 errors.AppendLine("Код подразделения должен содержать 6 цифр!");
+            if (string.IsNullOrWhiteSpace(_currentPassports.СерияИНомер) || _currentPassports.СерияИНомер.Length != 10)
+                errors.AppendLine("Серия и номер должны содержать 9 цифр!");
 
-            //Проверяем переменную errors на наличие ошибок
+            // Проверяем переменную errors на наличие ошибок
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            //Добавляем в объект Cars новую запись
+
+            // Добавляем в объект Cars новую запись
             if (_currentPassports.КодПаспорта == 0)
                 Entities.GetContext().ПаспортныеДанные.Add(_currentPassports);
             try
@@ -75,5 +78,6 @@ namespace Pelipenko220.Pages
         {
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
+
     }
 }

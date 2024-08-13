@@ -75,8 +75,8 @@
           </Key>
           <Property Name="КодПаспорта" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="КемВыдан" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="СерияИНомер" Type="int" Nullable="false" />
-          <Property Name="КодПодразделения" Type="int" Nullable="false" />
+          <Property Name="СерияИНомер" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="КодПодразделения" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Работники">
           <Key>
@@ -95,7 +95,7 @@
           <Property Name="КодЧитателя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ФИО" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Телефон" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="КодПаспорта" Type="int" Nullable="false" />
+          <Property Name="КодПаспорта" Type="int" />
         </EntityType>
         <Association Name="FK_ВыдачаКниги_ИнформацияОКниге">
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
@@ -182,7 +182,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Читатели_ПаспортныеДанные">
-          <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="1" />
+          <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="0..1" />
           <End Role="Читатели" Type="Self.Читатели" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ПаспортныеДанные">
@@ -324,8 +324,8 @@
           </Key>
           <Property Name="КодПаспорта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="КемВыдан" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="СерияИНомер" Type="Int32" Nullable="false" />
-          <Property Name="КодПодразделения" Type="Int32" Nullable="false" />
+          <Property Name="СерияИНомер" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="КодПодразделения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Читатели" Relationship="Self.FK_Читатели_ПаспортныеДанные" FromRole="ПаспортныеДанные" ToRole="Читатели" />
         </EntityType>
         <EntityType Name="Работники">
@@ -346,7 +346,7 @@
           <Property Name="КодЧитателя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Телефон" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="КодПаспорта" Type="Int32" Nullable="false" />
+          <Property Name="КодПаспорта" Type="Int32" />
           <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_Читатели" FromRole="Читатели" ToRole="ВыдачаКниги" />
           <NavigationProperty Name="ПаспортныеДанные" Relationship="Self.FK_Читатели_ПаспортныеДанные" FromRole="Читатели" ToRole="ПаспортныеДанные" />
         </EntityType>
@@ -435,7 +435,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Читатели_ПаспортныеДанные">
-          <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="1" />
+          <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="0..1" />
           <End Role="Читатели" Type="Self.Читатели" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ПаспортныеДанные">

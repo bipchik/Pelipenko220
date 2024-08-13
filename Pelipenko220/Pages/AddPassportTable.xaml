@@ -27,6 +27,6 @@
         <TextBox x:Name="KemVidan" Grid.Row="0" Grid.Column="1" Text="{Binding КемВыдан}" PreviewTextInput="KemVidan_PreviewTextInput"/>
         <TextBox x:Name="SeriaAndNomer" MaxLength="10" Grid.Row="1" Grid.Column="1" Text="{Binding СерияИНомер}" PreviewTextInput="SeriaAndNomer_PreviewTextInput"/>
         <TextBox x:Name="Cod" MaxLength="6" Grid.Row="2" Grid.Column="1" Text ="{Binding КодПодразделения}" PreviewTextInput="Cod_PreviewTextInput"/>
-        <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
+        <Button Name="Save" Content="Сохранить" Grid.Row="3" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ namespace Pelipenko220
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    
     public partial class Entities : DbContext
     {
         public Entities()
@@ -29,6 +30,7 @@ namespace Pelipenko220
         {
             throw new UnintentionalCodeFirstException();
         }
+    
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Авторы> Авторы { get; set; }
         public virtual DbSet<ВыдачаКниги> ВыдачаКниги { get; set; }

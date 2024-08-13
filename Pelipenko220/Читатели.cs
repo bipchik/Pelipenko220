@@ -23,7 +23,7 @@ namespace Pelipenko220
         public int КодЧитателя { get; set; }
         public string ФИО { get; set; }
         public string Телефон { get; set; }
-        public int КодПаспорта { get; set; }
+        public Nullable<int> КодПаспорта { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ВыдачаКниги> ВыдачаКниги { get; set; }
