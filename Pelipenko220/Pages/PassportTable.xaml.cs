@@ -23,6 +23,11 @@ namespace Pelipenko220.Pages
         public PassportTable()
         {
             InitializeComponent();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
         }
 
@@ -42,8 +47,7 @@ namespace Pelipenko220.Pages
                     Entities.GetContext().ПаспортныеДанные.RemoveRange(PassportsForRemoving);
                     Entities.GetContext().SaveChanges();
                     MessageBox.Show("Данные успешно удалены!");
-
-                    DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
+                    LoadData();
                 }
                 catch (Exception ex)
                 {
@@ -51,13 +55,31 @@ namespace Pelipenko220.Pages
                 }
             }
         }
+
         private void PasswordTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
                 Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridPassports.ItemsSource = Entities.GetContext().ПаспортныеДанные.ToList();
+                LoadData();
             }
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            var query = Entities.GetContext().ПаспортныеДанные.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(SearchSeriesNumber.Text))
+            {
+                query = query.Where(p => p.СерияИНомер.Contains(SearchSeriesNumber.Text));
+            }
+
+            if (!string.IsNullOrWhiteSpace(SearchDivisionCode.Text))
+            {
+                query = query.Where(p => p.КодПодразделения.Contains(SearchDivisionCode.Text));
+            }
+
+            DataGridPassports.ItemsSource = query.ToList();
         }
     }
 }
