@@ -81,5 +81,12 @@ namespace Pelipenko220.Pages
 
             DataGridPassports.ItemsSource = query.ToList();
         }
+
+        private void ClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchSeriesNumber.Text = string.Empty;
+            SearchDivisionCode.Text = string.Empty;
+            LoadData();
+        }
     }
 }

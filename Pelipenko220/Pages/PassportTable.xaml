@@ -23,9 +23,10 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBox x:Name="SearchSeriesNumber" Width="200" Margin="5" />
-            <TextBox x:Name="SearchDivisionCode" Width="200" Margin="5" />
+            <TextBox x:Name="SearchSeriesNumber" MaxLength="10" Width="200" Margin="5" />
+            <TextBox x:Name="SearchDivisionCode" MaxLength="6" Width="200" Margin="5" />
             <Button Content="Поиск" Width="100" Margin="5" Click="Search_Click"/>
+            <Button Content="Очистить" Width="100" Margin="5" Click="ClearSearch_Click"/>
         </StackPanel>
 
         <DataGrid Grid.Row="2" Name="DataGridPassports" AutoGenerateColumns="False" IsReadOnly="True">
