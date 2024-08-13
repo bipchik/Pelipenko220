@@ -1,0 +1,34 @@
+﻿<Page x:Class="Pelipenko220.Pages.Readers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Pelipenko220.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Readers">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Name="DataGridReaders" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО читателя" Binding="{Binding ФИО}" Width="200"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}" Width="200"/>
+                <DataGridTextColumn Header="Серия и номер" Binding="{Binding ПаспортныеДанные.СерияИНомер}" Width="100"/>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ButtonEdit" ToolTip="Для редактирования данных базы, нажмите на эту кнопку." Content="Редактировать" Click="AddEdit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="AddEdit_Click" Height="35" VerticalAlignment="Top" Margin="10,14,0,0" Width="107"/>
+        <Button Grid.Row="1" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Right" Click="Del_Click" Margin="10" VerticalAlignment="Top" Height="35" Width="107"/>
+    </Grid>
+</Page>

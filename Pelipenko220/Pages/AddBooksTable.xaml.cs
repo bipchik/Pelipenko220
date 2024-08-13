@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,7 @@ namespace Pelipenko220.Pages
 
             DataContext = _currentBook;
             AuthorCmbBox.ItemsSource = Entities.GetContext().Авторы.ToList();
+            GenreCmbBox.ItemsSource = Entities.GetContext().Жанры.ToList();
             IzdatelstvoCmbBox.ItemsSource = Entities.GetContext().Издательство.ToList();
         }
         private ИнформацияОКниге _currentBook = new ИнформацияОКниге();
@@ -37,14 +39,12 @@ namespace Pelipenko220.Pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentBook.Название))
                 errors.AppendLine("Укажите название книги!");
-            if (string.IsNullOrWhiteSpace(_currentBook.Название))
-                errors.AppendLine("Укажите название книги!");
             if (_currentBook.Авторы == null)
                 errors.AppendLine("Выберите автора книги!");
             if (_currentBook.Издательство == null)
                 errors.AppendLine("Выберите издательство книги!");
-            if (_currentBook.ГодИздания <= 0)
-                errors.AppendLine("Укажите год издания книги!");
+            if (_currentBook.ГодИздания < 4)
+                errors.AppendLine("Год издания книги должен содержать 4 цифры!");
             if (_currentBook.КолвоСтраниц <= 0)
                 errors.AppendLine("Укажите количество страниц книги!");
             //Проверяем переменную errors на наличие ошибок
@@ -65,6 +65,21 @@ namespace Pelipenko220.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+            this.NavigationService.Navigate(new Uri("/Pages/BooksTable.xaml", UriKind.Relative));
+        }
+        private void Year_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void KolvoStr_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void Cost_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }

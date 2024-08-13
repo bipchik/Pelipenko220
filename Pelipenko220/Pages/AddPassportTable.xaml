@@ -13,21 +13,20 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Кем выдан паспорт" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Номер" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Код подразделения" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding КемВыдан}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Серия}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text ="{Binding Номер}"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text ="{Binding КодПодразделения}"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" FontSize="16">
+            Кем выдан паспорт <LineBreak/> (заглавными буквами)
+        </TextBlock>
+        <TextBlock Text="Серия и номер" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Код подразделения" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBox x:Name="KemVidan" Grid.Row="0" Grid.Column="1" Text="{Binding КемВыдан}" PreviewTextInput="KemVidan_PreviewTextInput"/>
+        <TextBox x:Name="SeriaAndNomer" MaxLength="10" Grid.Row="1" Grid.Column="1" Text="{Binding СерияИНомер}" PreviewTextInput="SeriaAndNomer_PreviewTextInput"/>
+        <TextBox x:Name="Cod" MaxLength="6" Grid.Row="2" Grid.Column="1" Text ="{Binding КодПодразделения}" PreviewTextInput="Cod_PreviewTextInput"/>
         <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 </Page>

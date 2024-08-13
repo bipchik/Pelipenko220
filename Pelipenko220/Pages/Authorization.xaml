@@ -10,29 +10,73 @@
       Title="Authorization">
 
     <Grid>
-        <Label Content="Логин" Margin="37,33,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
-        <TextBlock x:Name="txtHintLogin" Text="Логин" Foreground="Gray" FontSize="16" Margin="120,38,0,-3"/>
-        <TextBox x:Name="LoginBox" Background="Transparent" Margin="107,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" TextChanged="LoginBox_TextChanged">
-            <TextBox.ToolTip>
-                <ToolTip Content="Введите Логин, который Вы указали при регистрации."/>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBlock x:Name="txtHintPass" Foreground="Gray" FontSize="16" Margin="120,90,0,0"><Run Text="Пароль"/></TextBlock>
-        <PasswordBox x:Name="PassBox" Password="" Background="Transparent" Margin="107,84,0,0" VerticalAlignment="Top" Height="31" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="365" PasswordChanged="PassBox_Changed">
-            <PasswordBox.ToolTip>
-                <ToolTip Content="Введите пароль, который Вы указали при регистрации."/>
-            </PasswordBox.ToolTip>
-        </PasswordBox>
-        <Label Content="Пароль" Margin="37,84,0,0" VerticalAlignment="Top" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="31" HorizontalAlignment="Left" Width="65"/>
-        <Button x:Name="Reg" Content="Регистрация" Height="42" Margin="37,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Reg_Click">
-            <Button.ToolTip>
-                <ToolTip Content="Если Вы еще не зарегистрированы, нажмите на эту кнопку."/>
-            </Button.ToolTip>
-        </Button>
-        <Button x:Name="Enter" Content="Войти" Height="42" Margin="301,151,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="171" Click="Enter_Click">
-            <Button.ToolTip>
-                <ToolTip Content="Если Вы ввели данные в поля 'Логин' и 'Пароль', нажмите на эту кнопку."/>
-            </Button.ToolTip>
-        </Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Margin="30" Source="/Resources/zastavka.jpg" />
+
+        <!--Лого-->
+        <StackPanel Grid.Column="1" Margin="10">
+            <Ellipse Width="100" Height="100" HorizontalAlignment="Center">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="UniformToFill" 
+                                ImageSource="/Resources/logo.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <!--Логин-->
+            <Border Height="50" BorderBrush="Silver" BorderThickness="2"
+                    CornerRadius="4" Margin="0,30">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <!--Для картинки-->
+                        <ColumnDefinition Width="50"/>
+                        <!--Для логина-->
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/login.png"/>
+                    <TextBox x:Name="loginBox" Grid.Column="1" Background="Transparent"
+                             FontSize="24" VerticalAlignment="Center"
+                             BorderThickness="0" TextChanged="loginBox_TextChanged"/>
+                    <TextBlock x:Name="hintLogin" IsHitTestVisible="False" FontSize="24" 
+                               Text="Логин" Grid.Column="1" 
+                               VerticalAlignment="Center" Foreground="Gray"/>
+                </Grid>
+            </Border>
+            <!--Пароль-->
+            <Border Height="50" BorderBrush="Silver" BorderThickness="2"
+                    CornerRadius="4" Margin="0,0">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <!--Для картинки-->
+                        <ColumnDefinition Width="50"/>
+                        <!--Для пароля-->
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/pass.jpg" Height="NaN" VerticalAlignment="Stretch" />
+                    <PasswordBox x:Name="passBox" Grid.Column="1" Background="Transparent"
+                                 FontSize="24" VerticalAlignment="Center"
+                                 BorderThickness="0" PasswordChanged="passBox_Changed"/>
+                    <TextBlock x:Name="hintPass" IsHitTestVisible="False" FontSize="24" Text="Пароль" Grid.Column="1" 
+                               VerticalAlignment="Center" Foreground="Gray"/>
+                </Grid>
+            </Border>
+
+            <Button x:Name="enter" BorderThickness="0" Content="Войти" 
+                    Height="50" Margin="0,30" Click="enter_Click"/>
+            <TextBlock><Run Text="Для регестрации нажмите "/><Hyperlink Click="reg_Link"><Run Text="сюда"/></Hyperlink></TextBlock>
+            <Button Width="40" Height="40" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Click="Button_Click">
+                <Ellipse Width="35" Height="35" HorizontalAlignment="Right">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="UniformToFill" 
+                    ImageSource="/Resources/sprav.jpg"/>
+                </Ellipse.Fill>
+                </Ellipse>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

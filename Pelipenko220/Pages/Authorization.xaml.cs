@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace Pelipenko220.Pages
 {
@@ -25,18 +26,18 @@ namespace Pelipenko220.Pages
         {
             InitializeComponent();
         }
-        private void PassBox_Changed(object sender, RoutedEventArgs e)
+        private void passBox_Changed(object sender, RoutedEventArgs e)
         {
-            txtHintPass.Visibility = Visibility.Visible;
-            if (PassBox.Password.Length > 0)
+            hintPass.Visibility = Visibility.Visible;
+            if (passBox.Password.Length > 0)
             {
-                txtHintPass.Visibility = Visibility.Hidden;
+                hintPass.Visibility = Visibility.Hidden;
             }
         }
 
-        private void Enter_Click(object sender, RoutedEventArgs e)
+        private void enter_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(LoginBox.Text) || string.IsNullOrEmpty(PassBox.Password))
+            if (string.IsNullOrEmpty(loginBox.Text) || string.IsNullOrEmpty(passBox.Password))
             {
                 MessageBox.Show("Введите логин и пароль!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -44,8 +45,8 @@ namespace Pelipenko220.Pages
 
             using (var db = new Entities())
             {
-                string HashPass = GetHash(PassBox.Password);
-                var user = db.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginBox.Text && u.Пароль == HashPass);
+                string HashPass = GetHash(passBox.Password);
+                var user = db.Работники.AsNoTracking().FirstOrDefault(u => u.Логин == loginBox.Text && u.Пароль == HashPass);
 
                 if (user == null) 
                 {
@@ -55,7 +56,7 @@ namespace Pelipenko220.Pages
                 else
                 {
                     NavigationService nav = NavigationService.GetNavigationService(this);
-                    nav.Navigate(new Uri("/Pages/Tables.xaml", UriKind.Relative));
+                    nav.Navigate(new Uri("/Pages/Main.xaml", UriKind.Relative));
                 }
             }
 
@@ -68,19 +69,23 @@ namespace Pelipenko220.Pages
             }
         }
 
-        private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void loginBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtHintLogin.Visibility = Visibility.Visible;
-            if (LoginBox.Text.Length > 0)
+            hintLogin.Visibility = Visibility.Visible;
+            if (loginBox.Text.Length > 0)
             {
-                txtHintLogin.Visibility = Visibility.Hidden;
+                hintLogin.Visibility = Visibility.Hidden;
             }
         }
 
-        private void Reg_Click(object sender, RoutedEventArgs e)
+        private void reg_Link(object sender, RoutedEventArgs e)
         {
-                this.NavigationService.Navigate(new Uri("/Pages/Registration.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("/Pages/Registration.xaml", UriKind.Relative));
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("\"C:\\Users\\Ф\\source\\repos\\Pelipenko220\\СпарвСис.chm\"");
         }
     }
 }

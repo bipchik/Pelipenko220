@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Pelipenko220.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddGiveBooks">
+      Title="AddGiveBooks"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,19 +16,22 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Название книги" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="ФИО читателя" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Дата выдачи" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <TextBlock Text="Дата возврата" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
-        <ComboBox Name="BookNameCmbBox" SelectedItem="{Binding ИнформациОКниге}" DisplayMemberPath="Название" Grid.Row="0" Grid.Column="1"/>
-        <ComboBox Name="ReaderCmbBox" SelectedItem="{Binding ИнформацияОЧитателе}" DisplayMemberPath="ФИО" Grid.Row="1" Grid.Column="1"/>
-        <DatePicker x:Name="GiveDate" Grid.Row="2" Grid.Column="1" Text ="{Binding ДатаВыдачи}" SelectedDateFormat="Short" Foreground="White" />
-        <DatePicker x:Name="TakeDate" Grid.Row="3" Grid.Column="1" Text ="{Binding ДатаВозврата}" SelectedDateFormat="Short" Foreground="White"/>
+        <TextBlock Text="Кто выдал" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="ФИО читателя" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Дата выдачи" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <TextBlock Text="Дата возврата" Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" FontSize="16"/>
+        <ComboBox Name="BookNameCmbBox" SelectedItem="{Binding ИнформацияОКниге}" DisplayMemberPath="Название" Grid.Row="0" Grid.Column="1"/>
+        <ComboBox Name="WorkerCmbBox" SelectedItem="{Binding Работники}" DisplayMemberPath="ФИО" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox Name="ReaderCmbBox" SelectedItem="{Binding Читатели}" DisplayMemberPath="ФИО" Grid.Row="2" Grid.Column="1"/>
+        <DatePicker x:Name="GiveDate" Grid.Row="3" Grid.Column="1" Text ="{Binding ДатаВыдачи}"  SelectedDateFormat="Short" Foreground="White" DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
+        <DatePicker x:Name="TakeDate" Grid.Row="4" Grid.Column="1" Text ="{Binding ДатаВозврата}" SelectedDateFormat="Short" Foreground="White" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
         <Button Name="Save" Content="Сохранить" Grid.Row="5" Click="Save_Click" Grid.Column="1" Margin="198,19,198,19"/>
     </Grid>
 </Page>

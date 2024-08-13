@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Pelipenko220</RootNamespace>
     <AssemblyName>Pelipenko220</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -86,6 +90,12 @@
     <Compile Include="Pages\AddBooksTable.xaml.cs">
       <DependentUpon>AddBooksTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddCities.xaml.cs">
+      <DependentUpon>AddCities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddGenres.xaml.cs">
+      <DependentUpon>AddGenres.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddGiveBooks.xaml.cs">
       <DependentUpon>AddGiveBooks.xaml</DependentUpon>
     </Compile>
@@ -94,6 +104,9 @@
     </Compile>
     <Compile Include="Pages\AddPassportTable.xaml.cs">
       <DependentUpon>AddPassportTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddReaders.xaml.cs">
+      <DependentUpon>AddReaders.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AuthorsTable.xaml.cs">
       <DependentUpon>AuthorsTable.xaml</DependentUpon>
@@ -104,20 +117,29 @@
     <Compile Include="Pages\BooksTable.xaml.cs">
       <DependentUpon>BooksTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Cities.xaml.cs">
+      <DependentUpon>Cities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Genres.xaml.cs">
+      <DependentUpon>Genres.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GiveBooksTable.xaml.cs">
       <DependentUpon>GiveBooksTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IzdatelstvoTable.xaml.cs">
       <DependentUpon>IzdatelstvoTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PassportTable.xaml.cs">
       <DependentUpon>PassportTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Tables.xaml.cs">
-      <DependentUpon>Tables.xaml</DependentUpon>
+    <Compile Include="Pages\Readers.xaml.cs">
+      <DependentUpon>Readers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UsersPage.xaml.cs">
-      <DependentUpon>UsersPage.xaml</DependentUpon>
+    <Compile Include="Pages\Worker.xaml.cs">
+      <DependentUpon>Worker.xaml</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -140,13 +162,13 @@
     <Compile Include="ИнформацияОКниге.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ИнформацияОЧитателе.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="ПаспортныеДанные.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Пользователь.cs">
+    <Compile Include="Работники.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Читатели.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Page Include="Dictionary.xaml">
@@ -177,6 +199,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddCities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddGenres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddGiveBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddPassportTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddReaders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +239,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Cities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Genres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GiveBooksTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,7 +255,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PassportTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Readers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,11 +271,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Tables.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\UsersPage.xaml">
+    <Page Include="Pages\Worker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,9 +317,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bibl.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +340,15 @@
     <Resource Include="Resources\clearBook.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\login.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\pass.jpg" />
+    <Resource Include="Resources\zastavka.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -307,6 +359,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\sprav.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

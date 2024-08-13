@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,5 @@ namespace Pelipenko220.Pages
                 DataGridBooks.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
             }
         }
-
     }
 }

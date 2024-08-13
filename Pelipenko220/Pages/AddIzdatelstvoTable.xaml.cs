@@ -58,6 +58,7 @@ namespace Pelipenko220.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+            this.NavigationService.Navigate(new Uri("/Pages/IzdatelstvoTable.xaml", UriKind.Relative));
         }
     }
 }

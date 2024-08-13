@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище библModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище библКПModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -28,8 +28,9 @@
           </Key>
           <Property Name="КодВыдачи" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ИнвентарныйНомер" Type="int" Nullable="false" />
-          <Property Name="НомерБилета" Type="int" Nullable="false" />
-          <Property Name="ДатаВыдачи" Type="date" Nullable="false" />
+          <Property Name="КодЧитателя" Type="int" Nullable="false" />
+          <Property Name="КтоВыдал" Type="int" />
+          <Property Name="ДатаВыдачи" Type="date" />
           <Property Name="ДатаВозврата" Type="date" />
         </EntityType>
         <EntityType Name="Город">
@@ -60,41 +61,13 @@
           </Key>
           <Property Name="ИнвентарныйНомер" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="КодАвтора" Type="int" />
+          <Property Name="КодЖанра" Type="int" />
           <Property Name="КодИздательства" Type="int" Nullable="false" />
           <Property Name="ГодИздания" Type="int" Nullable="false" />
           <Property Name="КолвоСтраниц" Type="int" Nullable="false" />
           <Property Name="Цена" Type="float" />
           <Property Name="Фото" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="ИнформацияОЧитателе">
-          <Key>
-            <PropertyRef Name="НомерБилета" />
-          </Key>
-          <Property Name="НомерБилета" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ФИО" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Телефон" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="КодПаспорта" Type="int" Nullable="false" />
-          <Property Name="КодПользователя" Type="int" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "библ.dbo.КнигаАвтор" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="КнигаАвтор">
-          <Key>
-            <PropertyRef Name="ИнвентарныйНомер" />
-            <PropertyRef Name="КодАвтора" />
-          </Key>
-          <Property Name="ИнвентарныйНомер" Type="int" Nullable="false" />
-          <Property Name="КодАвтора" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "библ.dbo.КнигаЖанр" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="КнигаЖанр">
-          <Key>
-            <PropertyRef Name="ИнвентарныйНомер" />
-            <PropertyRef Name="КодЖанра" />
-          </Key>
-          <Property Name="ИнвентарныйНомер" Type="int" Nullable="false" />
-          <Property Name="КодЖанра" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ПаспортныеДанные">
           <Key>
@@ -102,19 +75,27 @@
           </Key>
           <Property Name="КодПаспорта" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="КемВыдан" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Серия" Type="int" Nullable="false" />
-          <Property Name="Номер" Type="int" Nullable="false" />
-          <Property Name="КодПодразделения" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="СерияИНомер" Type="int" Nullable="false" />
+          <Property Name="КодПодразделения" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Пользователь">
+        <EntityType Name="Работники">
           <Key>
-            <PropertyRef Name="КодПользователя" />
+            <PropertyRef Name="КодРаботника" />
           </Key>
-          <Property Name="КодПользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Логин" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Пароль" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="КодРаботника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ФИО" Type="varchar(max)" Nullable="false" />
-          <Property Name="Фото" Type="varchar(max)" />
+          <Property Name="Фото" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Читатели">
+          <Key>
+            <PropertyRef Name="КодЧитателя" />
+          </Key>
+          <Property Name="КодЧитателя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Телефон" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="КодПаспорта" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_ВыдачаКниги_ИнформацияОКниге">
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
@@ -128,15 +109,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ВыдачаКниги_ИнформацияОЧитателе">
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="1" />
+        <Association Name="FK_ВыдачаКниги_Работники">
+          <End Role="Работники" Type="Self.Работники" Multiplicity="0..1" />
           <End Role="ВыдачаКниги" Type="Self.ВыдачаКниги" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ИнформацияОЧитателе">
-              <PropertyRef Name="НомерБилета" />
+            <Principal Role="Работники">
+              <PropertyRef Name="КодРаботника" />
             </Principal>
             <Dependent Role="ВыдачаКниги">
-              <PropertyRef Name="НомерБилета" />
+              <PropertyRef Name="КтоВыдал" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ВыдачаКниги_Читатели">
+          <End Role="Читатели" Type="Self.Читатели" Multiplicity="1" />
+          <End Role="ВыдачаКниги" Type="Self.ВыдачаКниги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Читатели">
+              <PropertyRef Name="КодЧитателя" />
+            </Principal>
+            <Dependent Role="ВыдачаКниги">
+              <PropertyRef Name="КодЧитателя" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -152,6 +145,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ИнформацияОКниге_Авторы">
+          <End Role="Авторы" Type="Self.Авторы" Multiplicity="0..1" />
+          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авторы">
+              <PropertyRef Name="КодАвтора" />
+            </Principal>
+            <Dependent Role="ИнформацияОКниге">
+              <PropertyRef Name="КодАвтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ИнформацияОКниге_Жанры">
+          <End Role="Жанры" Type="Self.Жанры" Multiplicity="0..1" />
+          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанры">
+              <PropertyRef Name="КодЖанра" />
+            </Principal>
+            <Dependent Role="ИнформацияОКниге">
+              <PropertyRef Name="КодЖанра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ИнформацияОКниге_Издательство">
           <End Role="Издательство" Type="Self.Издательство" Multiplicity="1" />
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
@@ -164,79 +181,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ИнформацияОЧитателе_ПаспортныеДанные">
+        <Association Name="FK_Читатели_ПаспортныеДанные">
           <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="1" />
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
+          <End Role="Читатели" Type="Self.Читатели" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ПаспортныеДанные">
               <PropertyRef Name="КодПаспорта" />
             </Principal>
-            <Dependent Role="ИнформацияОЧитателе">
+            <Dependent Role="Читатели">
               <PropertyRef Name="КодПаспорта" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ИнформацияОЧитателе_Пользователь">
-          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Пользователь">
-              <PropertyRef Name="КодПользователя" />
-            </Principal>
-            <Dependent Role="ИнформацияОЧитателе">
-              <PropertyRef Name="КодПользователя" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_КнигаАвтор_Авторы">
-          <End Role="Авторы" Type="Self.Авторы" Multiplicity="1" />
-          <End Role="КнигаАвтор" Type="Self.КнигаАвтор" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Авторы">
-              <PropertyRef Name="КодАвтора" />
-            </Principal>
-            <Dependent Role="КнигаАвтор">
-              <PropertyRef Name="КодАвтора" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_КнигаАвтор_ИнформацияОКниге">
-          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
-          <End Role="КнигаАвтор" Type="Self.КнигаАвтор" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ИнформацияОКниге">
-              <PropertyRef Name="ИнвентарныйНомер" />
-            </Principal>
-            <Dependent Role="КнигаАвтор">
-              <PropertyRef Name="ИнвентарныйНомер" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_КнигаЖанр_Жанры">
-          <End Role="Жанры" Type="Self.Жанры" Multiplicity="1" />
-          <End Role="КнигаЖанр" Type="Self.КнигаЖанр" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Жанры">
-              <PropertyRef Name="КодЖанра" />
-            </Principal>
-            <Dependent Role="КнигаЖанр">
-              <PropertyRef Name="КодЖанра" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_КнигаЖанр_ИнформацияОКниге">
-          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
-          <End Role="КнигаЖанр" Type="Self.КнигаЖанр" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ИнформацияОКниге">
-              <PropertyRef Name="ИнвентарныйНомер" />
-            </Principal>
-            <Dependent Role="КнигаЖанр">
-              <PropertyRef Name="ИнвентарныйНомер" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище библModelContainer">
+        <EntityContainer Name="Хранилище библКПModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Авторы" EntityType="Self.Авторы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ВыдачаКниги" EntityType="Self.ВыдачаКниги" Schema="dbo" store:Type="Tables" />
@@ -244,67 +201,47 @@
           <EntitySet Name="Жанры" EntityType="Self.Жанры" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Издательство" EntityType="Self.Издательство" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ИнформацияОКниге" EntityType="Self.ИнформацияОКниге" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ИнформацияОЧитателе" EntityType="Self.ИнформацияОЧитателе" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ПаспортныеДанные" EntityType="Self.ПаспортныеДанные" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="КнигаАвтор" EntityType="Self.КнигаАвтор" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[КнигаАвтор].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
-[КнигаАвтор].[КодАвтора] AS [КодАвтора]
-FROM [dbo].[КнигаАвтор] AS [КнигаАвтор]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="КнигаЖанр" EntityType="Self.КнигаЖанр" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[КнигаЖанр].[ИнвентарныйНомер] AS [ИнвентарныйНомер], 
-[КнигаЖанр].[КодЖанра] AS [КодЖанра]
-FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Работники" EntityType="Self.Работники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Читатели" EntityType="Self.Читатели" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОКниге" Association="Self.FK_ВыдачаКниги_ИнформацияОКниге">
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
             <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
           </AssociationSet>
-          <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОЧитателе" Association="Self.FK_ВыдачаКниги_ИнформацияОЧитателе">
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
+          <AssociationSet Name="FK_ВыдачаКниги_Работники" Association="Self.FK_ВыдачаКниги_Работники">
+            <End Role="Работники" EntitySet="Работники" />
+            <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ВыдачаКниги_Читатели" Association="Self.FK_ВыдачаКниги_Читатели">
+            <End Role="Читатели" EntitySet="Читатели" />
             <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
           </AssociationSet>
           <AssociationSet Name="FK_Издательство_Город" Association="Self.FK_Издательство_Город">
             <End Role="Город" EntitySet="Город" />
             <End Role="Издательство" EntitySet="Издательство" />
           </AssociationSet>
+          <AssociationSet Name="FK_ИнформацияОКниге_Авторы" Association="Self.FK_ИнформацияОКниге_Авторы">
+            <End Role="Авторы" EntitySet="Авторы" />
+            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ИнформацияОКниге_Жанры" Association="Self.FK_ИнформацияОКниге_Жанры">
+            <End Role="Жанры" EntitySet="Жанры" />
+            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
+          </AssociationSet>
           <AssociationSet Name="FK_ИнформацияОКниге_Издательство" Association="Self.FK_ИнформацияОКниге_Издательство">
             <End Role="Издательство" EntitySet="Издательство" />
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
           </AssociationSet>
-          <AssociationSet Name="FK_ИнформацияОЧитателе_ПаспортныеДанные" Association="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные">
+          <AssociationSet Name="FK_Читатели_ПаспортныеДанные" Association="Self.FK_Читатели_ПаспортныеДанные">
             <End Role="ПаспортныеДанные" EntitySet="ПаспортныеДанные" />
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ИнформацияОЧитателе_Пользователь" Association="Self.FK_ИнформацияОЧитателе_Пользователь">
-            <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
-          </AssociationSet>
-          <AssociationSet Name="FK_КнигаАвтор_Авторы" Association="Self.FK_КнигаАвтор_Авторы">
-            <End Role="Авторы" EntitySet="Авторы" />
-            <End Role="КнигаАвтор" EntitySet="КнигаАвтор" />
-          </AssociationSet>
-          <AssociationSet Name="FK_КнигаАвтор_ИнформацияОКниге" Association="Self.FK_КнигаАвтор_ИнформацияОКниге">
-            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
-            <End Role="КнигаАвтор" EntitySet="КнигаАвтор" />
-          </AssociationSet>
-          <AssociationSet Name="FK_КнигаЖанр_Жанры" Association="Self.FK_КнигаЖанр_Жанры">
-            <End Role="Жанры" EntitySet="Жанры" />
-            <End Role="КнигаЖанр" EntitySet="КнигаЖанр" />
-          </AssociationSet>
-          <AssociationSet Name="FK_КнигаЖанр_ИнформацияОКниге" Association="Self.FK_КнигаЖанр_ИнформацияОКниге">
-            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
-            <End Role="КнигаЖанр" EntitySet="КнигаЖанр" />
+            <End Role="Читатели" EntitySet="Читатели" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="библModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="библКПModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -321,7 +258,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </Key>
           <Property Name="КодАвтора" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ИнформацияОКниге" Relationship="Self.КнигаАвтор" FromRole="Авторы" ToRole="ИнформацияОКниге" />
+          <NavigationProperty Name="ИнформацияОКниге" Relationship="Self.FK_ИнформацияОКниге_Авторы" FromRole="Авторы" ToRole="ИнформацияОКниге" />
         </EntityType>
         <EntityType Name="ВыдачаКниги">
           <Key>
@@ -329,11 +266,13 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </Key>
           <Property Name="КодВыдачи" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ИнвентарныйНомер" Type="Int32" Nullable="false" />
-          <Property Name="НомерБилета" Type="Int32" Nullable="false" />
-          <Property Name="ДатаВыдачи" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="КодЧитателя" Type="Int32" Nullable="false" />
+          <Property Name="КтоВыдал" Type="Int32" />
+          <Property Name="ДатаВыдачи" Type="DateTime" Precision="0" />
           <Property Name="ДатаВозврата" Type="DateTime" Precision="0" />
           <NavigationProperty Name="ИнформацияОКниге" Relationship="Self.FK_ВыдачаКниги_ИнформацияОКниге" FromRole="ВыдачаКниги" ToRole="ИнформацияОКниге" />
-          <NavigationProperty Name="ИнформацияОЧитателе" Relationship="Self.FK_ВыдачаКниги_ИнформацияОЧитателе" FromRole="ВыдачаКниги" ToRole="ИнформацияОЧитателе" />
+          <NavigationProperty Name="Работники" Relationship="Self.FK_ВыдачаКниги_Работники" FromRole="ВыдачаКниги" ToRole="Работники" />
+          <NavigationProperty Name="Читатели" Relationship="Self.FK_ВыдачаКниги_Читатели" FromRole="ВыдачаКниги" ToRole="Читатели" />
         </EntityType>
         <EntityType Name="Город">
           <Key>
@@ -349,7 +288,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </Key>
           <Property Name="КодЖанра" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ИнформацияОКниге" Relationship="Self.КнигаЖанр" FromRole="Жанры" ToRole="ИнформацияОКниге" />
+          <NavigationProperty Name="ИнформацияОКниге" Relationship="Self.FK_ИнформацияОКниге_Жанры" FromRole="Жанры" ToRole="ИнформацияОКниге" />
         </EntityType>
         <EntityType Name="Издательство">
           <Key>
@@ -367,28 +306,17 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </Key>
           <Property Name="ИнвентарныйНомер" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="КодАвтора" Type="Int32" />
+          <Property Name="КодЖанра" Type="Int32" />
           <Property Name="КодИздательства" Type="Int32" Nullable="false" />
           <Property Name="ГодИздания" Type="Int32" Nullable="false" />
           <Property Name="КолвоСтраниц" Type="Int32" Nullable="false" />
           <Property Name="Цена" Type="Double" />
           <Property Name="Фото" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Авторы" Relationship="Self.FK_ИнформацияОКниге_Авторы" FromRole="ИнформацияОКниге" ToRole="Авторы" />
           <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_ИнформацияОКниге" FromRole="ИнформацияОКниге" ToRole="ВыдачаКниги" />
+          <NavigationProperty Name="Жанры" Relationship="Self.FK_ИнформацияОКниге_Жанры" FromRole="ИнформацияОКниге" ToRole="Жанры" />
           <NavigationProperty Name="Издательство" Relationship="Self.FK_ИнформацияОКниге_Издательство" FromRole="ИнформацияОКниге" ToRole="Издательство" />
-          <NavigationProperty Name="Авторы" Relationship="Self.КнигаАвтор" FromRole="ИнформацияОКниге" ToRole="Авторы" />
-          <NavigationProperty Name="Жанры" Relationship="Self.КнигаЖанр" FromRole="ИнформацияОКниге" ToRole="Жанры" />
-        </EntityType>
-        <EntityType Name="ИнформацияОЧитателе">
-          <Key>
-            <PropertyRef Name="НомерБилета" />
-          </Key>
-          <Property Name="НомерБилета" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ФИО" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Телефон" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="КодПаспорта" Type="Int32" Nullable="false" />
-          <Property Name="КодПользователя" Type="Int32" />
-          <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_ИнформацияОЧитателе" FromRole="ИнформацияОЧитателе" ToRole="ВыдачаКниги" />
-          <NavigationProperty Name="ПаспортныеДанные" Relationship="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные" FromRole="ИнформацияОЧитателе" ToRole="ПаспортныеДанные" />
-          <NavigationProperty Name="Пользователь" Relationship="Self.FK_ИнформацияОЧитателе_Пользователь" FromRole="ИнформацияОЧитателе" ToRole="Пользователь" />
         </EntityType>
         <EntityType Name="ПаспортныеДанные">
           <Key>
@@ -396,22 +324,44 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           </Key>
           <Property Name="КодПаспорта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="КемВыдан" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Серия" Type="Int32" Nullable="false" />
-          <Property Name="Номер" Type="Int32" Nullable="false" />
-          <Property Name="КодПодразделения" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ИнформацияОЧитателе" Relationship="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные" FromRole="ПаспортныеДанные" ToRole="ИнформацияОЧитателе" />
+          <Property Name="СерияИНомер" Type="Int32" Nullable="false" />
+          <Property Name="КодПодразделения" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Читатели" Relationship="Self.FK_Читатели_ПаспортныеДанные" FromRole="ПаспортныеДанные" ToRole="Читатели" />
         </EntityType>
-        <EntityType Name="Пользователь">
+        <EntityType Name="Работники">
           <Key>
-            <PropertyRef Name="КодПользователя" />
+            <PropertyRef Name="КодРаботника" />
           </Key>
-          <Property Name="КодПользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Логин" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="КодРаботника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ФИО" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Фото" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ИнформацияОЧитателе" Relationship="Self.FK_ИнформацияОЧитателе_Пользователь" FromRole="Пользователь" ToRole="ИнформацияОЧитателе" />
+          <Property Name="Фото" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_Работники" FromRole="Работники" ToRole="ВыдачаКниги" />
         </EntityType>
+        <EntityType Name="Читатели">
+          <Key>
+            <PropertyRef Name="КодЧитателя" />
+          </Key>
+          <Property Name="КодЧитателя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="КодПаспорта" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ВыдачаКниги" Relationship="Self.FK_ВыдачаКниги_Читатели" FromRole="Читатели" ToRole="ВыдачаКниги" />
+          <NavigationProperty Name="ПаспортныеДанные" Relationship="Self.FK_Читатели_ПаспортныеДанные" FromRole="Читатели" ToRole="ПаспортныеДанные" />
+        </EntityType>
+        <Association Name="FK_ИнформацияОКниге_Авторы">
+          <End Role="Авторы" Type="Self.Авторы" Multiplicity="0..1" />
+          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авторы">
+              <PropertyRef Name="КодАвтора" />
+            </Principal>
+            <Dependent Role="ИнформацияОКниге">
+              <PropertyRef Name="КодАвтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ВыдачаКниги_ИнформацияОКниге">
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="1" />
           <End Role="ВыдачаКниги" Type="Self.ВыдачаКниги" Multiplicity="*" />
@@ -424,15 +374,27 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ВыдачаКниги_ИнформацияОЧитателе">
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="1" />
+        <Association Name="FK_ВыдачаКниги_Работники">
+          <End Role="Работники" Type="Self.Работники" Multiplicity="0..1" />
           <End Role="ВыдачаКниги" Type="Self.ВыдачаКниги" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ИнформацияОЧитателе">
-              <PropertyRef Name="НомерБилета" />
+            <Principal Role="Работники">
+              <PropertyRef Name="КодРаботника" />
             </Principal>
             <Dependent Role="ВыдачаКниги">
-              <PropertyRef Name="НомерБилета" />
+              <PropertyRef Name="КтоВыдал" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ВыдачаКниги_Читатели">
+          <End Role="Читатели" Type="Self.Читатели" Multiplicity="1" />
+          <End Role="ВыдачаКниги" Type="Self.ВыдачаКниги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Читатели">
+              <PropertyRef Name="КодЧитателя" />
+            </Principal>
+            <Dependent Role="ВыдачаКниги">
+              <PropertyRef Name="КодЧитателя" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -448,6 +410,18 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ИнформацияОКниге_Жанры">
+          <End Role="Жанры" Type="Self.Жанры" Multiplicity="0..1" />
+          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанры">
+              <PropertyRef Name="КодЖанра" />
+            </Principal>
+            <Dependent Role="ИнформацияОКниге">
+              <PropertyRef Name="КодЖанра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ИнформацияОКниге_Издательство">
           <End Role="Издательство" Type="Self.Издательство" Multiplicity="1" />
           <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
@@ -460,37 +434,17 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ИнформацияОЧитателе_ПаспортныеДанные">
+        <Association Name="FK_Читатели_ПаспортныеДанные">
           <End Role="ПаспортныеДанные" Type="Self.ПаспортныеДанные" Multiplicity="1" />
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
+          <End Role="Читатели" Type="Self.Читатели" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ПаспортныеДанные">
               <PropertyRef Name="КодПаспорта" />
             </Principal>
-            <Dependent Role="ИнформацияОЧитателе">
+            <Dependent Role="Читатели">
               <PropertyRef Name="КодПаспорта" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ИнформацияОЧитателе_Пользователь">
-          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
-          <End Role="ИнформацияОЧитателе" Type="Self.ИнформацияОЧитателе" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Пользователь">
-              <PropertyRef Name="КодПользователя" />
-            </Principal>
-            <Dependent Role="ИнформацияОЧитателе">
-              <PropertyRef Name="КодПользователя" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="КнигаАвтор">
-          <End Role="Авторы" Type="Self.Авторы" Multiplicity="*" />
-          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
-        </Association>
-        <Association Name="КнигаЖанр">
-          <End Role="Жанры" Type="Self.Жанры" Multiplicity="*" />
-          <End Role="ИнформацияОКниге" Type="Self.ИнформацияОКниге" Multiplicity="*" />
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -500,40 +454,40 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
           <EntitySet Name="Жанры" EntityType="Self.Жанры" />
           <EntitySet Name="Издательство" EntityType="Self.Издательство" />
           <EntitySet Name="ИнформацияОКниге" EntityType="Self.ИнформацияОКниге" />
-          <EntitySet Name="ИнформацияОЧитателе" EntityType="Self.ИнформацияОЧитателе" />
           <EntitySet Name="ПаспортныеДанные" EntityType="Self.ПаспортныеДанные" />
-          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
+          <EntitySet Name="Работники" EntityType="Self.Работники" />
+          <EntitySet Name="Читатели" EntityType="Self.Читатели" />
+          <AssociationSet Name="FK_ИнформацияОКниге_Авторы" Association="Self.FK_ИнформацияОКниге_Авторы">
+            <End Role="Авторы" EntitySet="Авторы" />
+            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
+          </AssociationSet>
           <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОКниге" Association="Self.FK_ВыдачаКниги_ИнформацияОКниге">
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
             <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
           </AssociationSet>
-          <AssociationSet Name="FK_ВыдачаКниги_ИнформацияОЧитателе" Association="Self.FK_ВыдачаКниги_ИнформацияОЧитателе">
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
+          <AssociationSet Name="FK_ВыдачаКниги_Работники" Association="Self.FK_ВыдачаКниги_Работники">
+            <End Role="Работники" EntitySet="Работники" />
+            <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ВыдачаКниги_Читатели" Association="Self.FK_ВыдачаКниги_Читатели">
+            <End Role="Читатели" EntitySet="Читатели" />
             <End Role="ВыдачаКниги" EntitySet="ВыдачаКниги" />
           </AssociationSet>
           <AssociationSet Name="FK_Издательство_Город" Association="Self.FK_Издательство_Город">
             <End Role="Город" EntitySet="Город" />
             <End Role="Издательство" EntitySet="Издательство" />
           </AssociationSet>
+          <AssociationSet Name="FK_ИнформацияОКниге_Жанры" Association="Self.FK_ИнформацияОКниге_Жанры">
+            <End Role="Жанры" EntitySet="Жанры" />
+            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
+          </AssociationSet>
           <AssociationSet Name="FK_ИнформацияОКниге_Издательство" Association="Self.FK_ИнформацияОКниге_Издательство">
             <End Role="Издательство" EntitySet="Издательство" />
             <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
           </AssociationSet>
-          <AssociationSet Name="FK_ИнформацияОЧитателе_ПаспортныеДанные" Association="Self.FK_ИнформацияОЧитателе_ПаспортныеДанные">
+          <AssociationSet Name="FK_Читатели_ПаспортныеДанные" Association="Self.FK_Читатели_ПаспортныеДанные">
             <End Role="ПаспортныеДанные" EntitySet="ПаспортныеДанные" />
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ИнформацияОЧитателе_Пользователь" Association="Self.FK_ИнформацияОЧитателе_Пользователь">
-            <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="ИнформацияОЧитателе" EntitySet="ИнформацияОЧитателе" />
-          </AssociationSet>
-          <AssociationSet Name="КнигаАвтор" Association="Self.КнигаАвтор">
-            <End Role="Авторы" EntitySet="Авторы" />
-            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
-          </AssociationSet>
-          <AssociationSet Name="КнигаЖанр" Association="Self.КнигаЖанр">
-            <End Role="Жанры" EntitySet="Жанры" />
-            <End Role="ИнформацияОКниге" EntitySet="ИнформацияОКниге" />
+            <End Role="Читатели" EntitySet="Читатели" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -541,9 +495,9 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище библModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище библКПModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="библModel.sysdiagrams">
+            <EntityTypeMapping TypeName="библКПModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -554,7 +508,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Авторы">
-            <EntityTypeMapping TypeName="библModel.Авторы">
+            <EntityTypeMapping TypeName="библКПModel.Авторы">
               <MappingFragment StoreEntitySet="Авторы">
                 <ScalarProperty Name="КодАвтора" ColumnName="КодАвтора" />
                 <ScalarProperty Name="ФИО" ColumnName="ФИО" />
@@ -562,18 +516,19 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ВыдачаКниги">
-            <EntityTypeMapping TypeName="библModel.ВыдачаКниги">
+            <EntityTypeMapping TypeName="библКПModel.ВыдачаКниги">
               <MappingFragment StoreEntitySet="ВыдачаКниги">
                 <ScalarProperty Name="КодВыдачи" ColumnName="КодВыдачи" />
                 <ScalarProperty Name="ИнвентарныйНомер" ColumnName="ИнвентарныйНомер" />
-                <ScalarProperty Name="НомерБилета" ColumnName="НомерБилета" />
+                <ScalarProperty Name="КодЧитателя" ColumnName="КодЧитателя" />
+                <ScalarProperty Name="КтоВыдал" ColumnName="КтоВыдал" />
                 <ScalarProperty Name="ДатаВыдачи" ColumnName="ДатаВыдачи" />
                 <ScalarProperty Name="ДатаВозврата" ColumnName="ДатаВозврата" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Город">
-            <EntityTypeMapping TypeName="библModel.Город">
+            <EntityTypeMapping TypeName="библКПModel.Город">
               <MappingFragment StoreEntitySet="Город">
                 <ScalarProperty Name="КодГорода" ColumnName="КодГорода" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
@@ -581,7 +536,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Жанры">
-            <EntityTypeMapping TypeName="библModel.Жанры">
+            <EntityTypeMapping TypeName="библКПModel.Жанры">
               <MappingFragment StoreEntitySet="Жанры">
                 <ScalarProperty Name="КодЖанра" ColumnName="КодЖанра" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
@@ -589,7 +544,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Издательство">
-            <EntityTypeMapping TypeName="библModel.Издательство">
+            <EntityTypeMapping TypeName="библКПModel.Издательство">
               <MappingFragment StoreEntitySet="Издательство">
                 <ScalarProperty Name="КодИздательства" ColumnName="КодИздательства" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
@@ -598,10 +553,12 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ИнформацияОКниге">
-            <EntityTypeMapping TypeName="библModel.ИнформацияОКниге">
+            <EntityTypeMapping TypeName="библКПModel.ИнформацияОКниге">
               <MappingFragment StoreEntitySet="ИнформацияОКниге">
                 <ScalarProperty Name="ИнвентарныйНомер" ColumnName="ИнвентарныйНомер" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="КодАвтора" ColumnName="КодАвтора" />
+                <ScalarProperty Name="КодЖанра" ColumnName="КодЖанра" />
                 <ScalarProperty Name="КодИздательства" ColumnName="КодИздательства" />
                 <ScalarProperty Name="ГодИздания" ColumnName="ГодИздания" />
                 <ScalarProperty Name="КолвоСтраниц" ColumnName="КолвоСтраниц" />
@@ -610,32 +567,20 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ИнформацияОЧитателе">
-            <EntityTypeMapping TypeName="библModel.ИнформацияОЧитателе">
-              <MappingFragment StoreEntitySet="ИнформацияОЧитателе">
-                <ScalarProperty Name="НомерБилета" ColumnName="НомерБилета" />
-                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
-                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
-                <ScalarProperty Name="КодПаспорта" ColumnName="КодПаспорта" />
-                <ScalarProperty Name="КодПользователя" ColumnName="КодПользователя" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ПаспортныеДанные">
-            <EntityTypeMapping TypeName="библModel.ПаспортныеДанные">
+            <EntityTypeMapping TypeName="библКПModel.ПаспортныеДанные">
               <MappingFragment StoreEntitySet="ПаспортныеДанные">
                 <ScalarProperty Name="КодПаспорта" ColumnName="КодПаспорта" />
                 <ScalarProperty Name="КемВыдан" ColumnName="КемВыдан" />
-                <ScalarProperty Name="Серия" ColumnName="Серия" />
-                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="СерияИНомер" ColumnName="СерияИНомер" />
                 <ScalarProperty Name="КодПодразделения" ColumnName="КодПодразделения" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Пользователь">
-            <EntityTypeMapping TypeName="библModel.Пользователь">
-              <MappingFragment StoreEntitySet="Пользователь">
-                <ScalarProperty Name="КодПользователя" ColumnName="КодПользователя" />
+          <EntitySetMapping Name="Работники">
+            <EntityTypeMapping TypeName="библКПModel.Работники">
+              <MappingFragment StoreEntitySet="Работники">
+                <ScalarProperty Name="КодРаботника" ColumnName="КодРаботника" />
                 <ScalarProperty Name="Логин" ColumnName="Логин" />
                 <ScalarProperty Name="Пароль" ColumnName="Пароль" />
                 <ScalarProperty Name="ФИО" ColumnName="ФИО" />
@@ -643,22 +588,16 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="КнигаАвтор" TypeName="библModel.КнигаАвтор" StoreEntitySet="КнигаАвтор">
-            <EndProperty Name="Авторы">
-              <ScalarProperty Name="КодАвтора" ColumnName="КодАвтора" />
-            </EndProperty>
-            <EndProperty Name="ИнформацияОКниге">
-              <ScalarProperty Name="ИнвентарныйНомер" ColumnName="ИнвентарныйНомер" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="КнигаЖанр" TypeName="библModel.КнигаЖанр" StoreEntitySet="КнигаЖанр">
-            <EndProperty Name="Жанры">
-              <ScalarProperty Name="КодЖанра" ColumnName="КодЖанра" />
-            </EndProperty>
-            <EndProperty Name="ИнформацияОКниге">
-              <ScalarProperty Name="ИнвентарныйНомер" ColumnName="ИнвентарныйНомер" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="Читатели">
+            <EntityTypeMapping TypeName="библКПModel.Читатели">
+              <MappingFragment StoreEntitySet="Читатели">
+                <ScalarProperty Name="КодЧитателя" ColumnName="КодЧитателя" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="КодПаспорта" ColumnName="КодПаспорта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -675,7 +614,7 @@ FROM [dbo].[КнигаЖанр] AS [КнигаЖанр]</DefiningQuery>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

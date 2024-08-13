@@ -11,7 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO; //для осуществления чтения/записи в файл
+using System.Diagnostics; //для запуска Блокнота
+
+
 
 namespace Pelipenko220.Pages
 {
@@ -23,7 +26,7 @@ namespace Pelipenko220.Pages
         public GiveBooksTable()
         {
             InitializeComponent();
-            DataGridGiveBooks.ItemsSource = Entities.GetContext().ИнформацияОКниге.ToList();
+            DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
@@ -59,5 +62,7 @@ namespace Pelipenko220.Pages
                 DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
             }
         }
-    }   
+
+
+    }
 }

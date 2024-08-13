@@ -68,7 +68,7 @@ namespace Pelipenko220.Pages
             }
             using (var db1 = new Entities())
             {
-                var user = db1.Пользователь.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
+                var user = db1.Работники.AsNoTracking().FirstOrDefault(u => u.Логин == LoginInput.Text);
 
                 if (user != null)
                 {
@@ -78,19 +78,19 @@ namespace Pelipenko220.Pages
 
                 //запись в БД
                 Entities db2 = new Entities();
-                Пользователь userObject = new Пользователь
+                Работники userObject = new Работники
                 {
                     ФИО = fioInput.Text,
                     Логин = LoginInput.Text,
                     Пароль = GetHash(PassInput.Password)
                 };
-                db2.Пользователь.Add(userObject);
+                db2.Работники.Add(userObject);
                 db2.SaveChanges();
 
                 MessageBox.Show("Пользователь зарегестрирован!", "Регистрация завершена!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/Pages/Tables.xaml", UriKind.Relative));
+            nav.Navigate(new Uri("/Pages/Main.xaml", UriKind.Relative));
         }
         
         private void Cancel_Click(object sender, RoutedEventArgs e)

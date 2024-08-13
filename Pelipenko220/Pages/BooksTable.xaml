@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BooksTable"
       IsVisibleChanged="BooksTable_IsVisibleChanged">
-    
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,10 +16,11 @@
             <RowDefinition Height="73*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Name="DataGridBooks" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid ItemsSource="{Binding ИнформацияОКниге}" Grid.Row="0" Name="DataGridBooks" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="100"/>
-                <DataGridTextColumn Header="Автор(ы)" Binding="{Binding Авторы.ФИО}" Width="100"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="150"/>
+                <DataGridTextColumn Header="Автор(ы)" Binding="{Binding Авторы.ФИО}" Width="150"/>
+                <DataGridTextColumn Header="Жанр(ы)" Binding="{Binding Жанры.Название}" Width="120"/>
                 <DataGridTextColumn Header="Издательство" Binding="{Binding Издательство.Название}" Width="100"/>
                 <DataGridTextColumn Header="Год издания" Binding="{Binding ГодИздания}" Width="80"/>
                 <DataGridTextColumn Header="Количество страниц" Binding="{Binding КолвоСтраниц}" Width="60"/>
@@ -35,6 +36,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="1" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="AddEdit_Click" Height="35" VerticalAlignment="Top" Margin="10,14,0,0" Width="107"/>
-        <Button Grid.Row="1" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Left" Click="Del_Click" Margin="683,14,0,24" Width="107"/>
+        <Button Grid.Row="1" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Left" Click="Del_Click" Margin="683,0,0,0" VerticalAlignment="Center" Height="35" Width="107"/>
     </Grid>
 </Page>

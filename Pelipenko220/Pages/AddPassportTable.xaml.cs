@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,7 +29,6 @@ namespace Pelipenko220.Pages
                 _currentPassports = selectedPassports;
 
             DataContext = _currentPassports;
-
         }
         private ПаспортныеДанные _currentPassports = new ПаспортныеДанные();
 
@@ -37,12 +37,8 @@ namespace Pelipenko220.Pages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentPassports.КемВыдан))
                 errors.AppendLine("Укажите кем выдан паспорт!");
-            if (_currentPassports.Серия <= 0)
-                errors.AppendLine("Укажите серию паспорта! (4 цифры)");
-            if (_currentPassports.Номер <= 0)
-                errors.AppendLine("Укажите номер паспорта! (6 цифр)");
-            if (string.IsNullOrWhiteSpace(_currentPassports.КодПодразделения))
-                errors.AppendLine("Укажите код подразделения паспорта! (***-***)");
+            if (_currentPassports.КодПодразделения < 6)
+                errors.AppendLine("Код подразделения должен содержать 6 цифр!");
 
             //Проверяем переменную errors на наличие ошибок
             if (errors.Length > 0)
@@ -62,6 +58,22 @@ namespace Pelipenko220.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+            this.NavigationService.Navigate(new Uri("/Pages/PassportTable.xaml", UriKind.Relative));
+        }
+
+        private void KemVidan_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^А-Я]+").IsMatch(e.Text);
+        }
+
+        private void SeriaAndNomer_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void Cod_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }
