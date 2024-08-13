@@ -8,21 +8,27 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GiveBooksTable"
       IsVisibleChanged="GiveBooksTable_IsVisibleChanged">
-    
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="377*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="327*"/>
             <RowDefinition Height="73*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Name="DataGridGiveBooks" AutoGenerateColumns="False" IsReadOnly="True">
+
+        <!-- Search Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+            <TextBox Name="SearchTextBox" Width="200" Margin="0,0,10,0" ToolTip="Введите название книги, ФИО читателя или работника для поиска."/>
+            <Button Name="SearchButton" Content="Поиск" Click="SearchButton_Click" ToolTip="Для поиска по базе, нажмите на эту кнопку."/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" Name="DataGridGiveBooks" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название книги" Binding="{Binding ИнформацияОКниге.Название}" Width="150"/>
                 <DataGridTextColumn Header="Кто выдал книгу" Binding="{Binding Работники.ФИО}" Width="150"/>
                 <DataGridTextColumn Header="ФИО читателя" Binding="{Binding Читатели.ФИО}" Width="150"/>
                 <DataGridTextColumn x:Name="GiveData" Header="Дата выдачи" Binding="{Binding ДатаВыдачи}" Width="90"/>
                 <DataGridTextColumn x:Name="TakeData" Header="Дата возврата" Binding="{Binding ДатаВозврата}" Width="90"/>
-
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -32,7 +38,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="AddEdit_Click" Height="35" VerticalAlignment="Top" Margin="10" Width="107"/>
-        <Button Grid.Row="1" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Right" Click="Del_Click" VerticalAlignment="Top" Margin="10" Height="35" Width="107"/>
+
+        <Button Grid.Row="2" ToolTip="Для добавления данных в базу, нажмите на эту кнопку." x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Click="AddEdit_Click" Height="35" VerticalAlignment="Top" Margin="10" Width="107"/>
+        <Button Grid.Row="2" ToolTip="Для удаления данных из базы, нажмите на эту кнопку." x:Name="Del" Content="Удалить" HorizontalAlignment="Right" Click="Del_Click" VerticalAlignment="Top" Margin="10" Height="35" Width="107"/>
     </Grid>
 </Page>

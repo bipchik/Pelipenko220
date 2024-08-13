@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.IO; //для осуществления чтения/записи в файл
-using System.Diagnostics; //для запуска Блокнота
-
-
+using System.Data.Entity;
 
 namespace Pelipenko220.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для GiveBooksTable.xaml
-    /// </summary>
     public partial class GiveBooksTable : Page
     {
         public GiveBooksTable()
         {
             InitializeComponent();
-            DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги
+                .Include(b => b.ИнформацияОКниге)
+                .Include(b => b.Работники)
+                .Include(b => b.Читатели)
+                .ToList();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
@@ -40,8 +34,7 @@ namespace Pelipenko220.Pages
                     Entities.GetContext().ВыдачаКниги.RemoveRange(GiveBooksForRemoving);
                     Entities.GetContext().SaveChanges();
                     MessageBox.Show("Данные успешно удалены!");
-
-                    DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
+                    LoadData();
                 }
                 catch (Exception ex)
                 {
@@ -54,15 +47,34 @@ namespace Pelipenko220.Pages
         {
             NavigationService.Navigate(new Pages.AddGiveBooks((sender as Button).DataContext as ВыдачаКниги));
         }
+
         private void GiveBooksTable_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
                 Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги.ToList();
+                LoadData();
             }
         }
 
-
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                DataGridGiveBooks.ItemsSource = Entities.GetContext().ВыдачаКниги
+                    .Include(b => b.ИнформацияОКниге)
+                    .Include(b => b.Работники)
+                    .Include(b => b.Читатели)
+                    .Where(b => b.ИнформацияОКниге.Название.ToLower().Contains(searchText)
+                             || b.Читатели.ФИО.ToLower().Contains(searchText)
+                             || b.Работники.ФИО.ToLower().Contains(searchText))
+                    .ToList();
+            }
+            else
+            {
+                LoadData();
+            }
+        }
     }
 }
